@@ -54,10 +54,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Inventory.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="Attack\BasicAttackBehavior.cs" />
+    <Compile Include="Classes\Bank.cs" />
+    <Compile Include="Classes\Enemy.cs" />
+    <Compile Include="Classes\Market.cs" />
+    <Compile Include="Interface\IAttackBehavior.cs" />
+    <Compile Include="Classes\Inventory.cs" />
+    <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\Task.cs" />
+    <Compile Include="Shop\PubMarketBehavior.cs" />
     <Page Include="Game.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -70,10 +76,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chapter.cs" />
+    <Compile Include="Classes\Chapter.cs" />
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IMarketBehavior.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

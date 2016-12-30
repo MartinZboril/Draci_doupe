@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Draci_doupe.Properties;
+using Draci_doupe.Classes;
+using Draci_doupe.Shop;
 
 namespace Draci_doupe
 {
@@ -20,12 +23,15 @@ namespace Draci_doupe
     /// </summary>
     public partial class Game : Page
     {
-        Person person = new Person();
+        Person person = new Person(100);
         List<Inventory> inventory = new List<Inventory>();
         Chapter chapter = new Chapter(0);
         Task task = new Task(0);
         Item item = new Item(1);
-        
+        Enemy player = new Enemy();
+        Enemy enemy = new Enemy();
+        Market market = new Market();
+        Bank money = new Bank();
         public Game()
         {
             InitializeComponent();
@@ -57,6 +63,9 @@ namespace Draci_doupe
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
             ProfilePopUp.IsOpen = true;
+            Name.Text = person.Name;
+            Level.Text = person.Level.ToString();
+            Lives.Text = person.Lives.ToString();
         }
 
         private void ProfilePopUpClose_Click(object sender, RoutedEventArgs e)
@@ -74,6 +83,26 @@ namespace Draci_doupe
             InventoryPopUp.IsOpen = false;
         }
 
+        private void AttackPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            AttackPopUp.IsOpen = false;
+        }
+
+        private void MarketButton_Click(object sender, RoutedEventArgs e)
+        {
+            MarketPopUp.IsOpen = true;
+            Money.Text = money.Money.ToString();
+        }
+
+        private void MarketPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            MarketPopUp.IsOpen = false;
+            InventoryButton.Visibility = System.Windows.Visibility.Visible;
+            ProfileButton.Visibility = System.Windows.Visibility.Visible;
+            HelperButton.Visibility = System.Windows.Visibility.Visible;
+            MarketButton.Visibility = System.Windows.Visibility.Hidden;
+        }
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;
@@ -82,20 +111,79 @@ namespace Draci_doupe
                 Continue_button.Content = person.GetHelper(chkZone.Tag.ToString());
                 if (!person.Helper.Equals("Neni") && !person.Helper1.Equals("Neni"))
                 {
-                    chapter = new Chapter(chapter.ID_Chapter + 1);
-                    task = new Task(task.Id_Task + 1);
+                    Continue();
                     Continue_button.Visibility = System.Windows.Visibility.Hidden;
                 }
 
             } else if(task.Type_task.Equals("vyber"))
             {
                 if (chkZone.Tag.ToString().Equals("Ano"))
+                {                  
+                    item = new Item(task.Reward_Task);
+                    if (item.ItemName.Contains("kamínků"))
+                    {
+                        money = new Bank(item.ItemName);
+                    }
+                    else
+                    {
+                        inventory.Add(new Inventory(item.ItemId, item.ItemName));
+                    }
+                }
+                Continue();
+            }
+            else if (task.Type_task.Equals("boj"))
+            {
+                int num = 1;
+                if (chkZone.Tag.ToString().Equals("Ano"))
                 {
-                    Item item = new Item(task.Reward_Task);
+                    player = new Enemy(person.Name, person.Lives);
+                    enemy = new Enemy(0);
+                    AttackPopUp.IsOpen = true;
+                } else
+                {
+                    num = 2;
+                }
+                chapter = new Chapter(chapter.ID_Chapter + num);
+                task = new Task(task.Id_Task + num);
+            }
+            else if (task.Type_task.Equals("odmena"))
+            {
+                item = new Item(task.Reward_Task);
+                if (item.ItemName.Contains("kamínků"))
+                {
+                    money = new Bank(item.ItemName);
+                }
+                else
+                {
                     inventory.Add(new Inventory(item.ItemId, item.ItemName));
                 }
-                chapter = new Chapter(chapter.ID_Chapter + 1);
-                task = new Task(task.Id_Task + 1);
+                Continue();
+            }
+            else if (task.Type_task.Equals("hospoda"))
+            {
+                int num = 1;
+                if (chkZone.Tag.ToString().Equals("Ano"))
+                {
+                    market = new Market(0);
+                    List<int> MarketItemsId = item.GetItemsId();
+                    List<string> MarketItemsName = item.GetItemsName();
+                    List<string> MarketItemsType = item.GetItemsType();
+                    market.MarketItems(MarketItemsId, MarketItemsName, MarketItemsType);
+                    InventoryButton.Visibility = System.Windows.Visibility.Hidden;
+                    ProfileButton.Visibility = System.Windows.Visibility.Hidden;
+                    HelperButton.Visibility = System.Windows.Visibility.Hidden;
+                    MarketButton.Visibility = System.Windows.Visibility.Visible;
+                }
+                else
+                {
+                    num = 2;
+                }
+                chapter = new Chapter(chapter.ID_Chapter + num);
+                task = new Task(task.Id_Task + num);
+            }
+            else
+            {
+                Continue();
             }
             Title.Text = chapter.Name_Chapter;
             Text.Text = chapter.Text_Chapter;
@@ -108,6 +196,55 @@ namespace Draci_doupe
             Task_option = task.TaskSplit(task.Text_Task);
             Task_1.ItemsSource = Task_option;
             Inventory_List.ItemsSource = inventory;
+            Market_List.ItemsSource = market.MarketItemName;
+        }
+
+        private void AttackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Player.Text = player.EnemyName;
+            Enemy.Text = enemy.EnemyName;
+
+            PlayerLives.Text = player.EnemyLives.ToString();
+            EnemyLives.Text = enemy.EnemyLives.ToString();
+
+            GameInfo();
+        }
+        private void GameInfo()
+        {
+            if (player.EnemyLives <= 0 || enemy.EnemyLives <= 0)
+            {
+                AttackPopUpClose.Content = "Pokracovat";
+                if (player.EnemyLives <= 0 && enemy.EnemyLives <= 0)
+                {
+                    Result.Text = "Zemreli oba";
+                    AttackPopUpClose.Content = "Zavrit";
+                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
+                }
+                else if (player.EnemyLives <= 0)
+                {
+                    Result.Text = "Vyhrál " + enemy.EnemyName;
+                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
+                    AttackPopUpClose.Content = "Zavrit";
+                }
+                else if (enemy.EnemyLives <= 0)
+                {
+                    Result.Text = "Vyhrál " + player.EnemyName;
+                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
+                    person.Lives = player.EnemyLives;
+                    AttackPopUpClose.Content = "Zavrit";
+                }
+            }
+            else
+            {
+                player.AttackEnemy(enemy, player.EnemyAttackStrength);
+                enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
+            }
+        }
+        
+        private void Continue()
+        {
+            chapter = new Chapter(chapter.ID_Chapter + 1);
+            task = new Task(task.Id_Task + 1);
         }
     }
 }
