@@ -11,6 +11,7 @@ namespace Draci_doupe
         List<int> Item_ID = new List<int>();
         List<string> Item_Name = new List<string>();
         List<string> Item_Type = new List<string>();
+        List<int> Item_Price = new List<int>();
         public Item()
         {
 
@@ -41,8 +42,16 @@ namespace Draci_doupe
             Item_Type.Add("Pití");
             Item_Type.Add("Pití");
 
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+            Item_Price.Add(50);
+
             _itemid = Item_ID[n];
-            _itemname = Item_Name[n];
+            _itemname = Item_Name[n];           
         }
         private int _itemid;
         public int ItemId
@@ -62,6 +71,12 @@ namespace Draci_doupe
             get { return _itemtype; }
             set { _itemtype = value; }
         }
+        private int _itemprice;
+        public int ItemPrice
+        {
+            get { return _itemprice; }
+            set { _itemprice = value; }
+        }
         public List<int> GetItemsId()
         {
             return Item_ID;
@@ -73,6 +88,34 @@ namespace Draci_doupe
         public List<string> GetItemsType()
         {
             return Item_Type;
+        }
+        public List<int> GetItemsPrice()
+        {
+            return Item_Price;
+        }
+        public int GetItemId(string item)
+        {
+            int Id = 0;
+            for (int i = 0; i < Item_Name.Count; i++)
+            {
+                if (item.Equals(Item_Name[i]))
+                {
+                    Id = Item_ID[i];
+                }               
+            }
+            return Id;
+        }
+        public int GetItemPrice(string item)
+        {
+            int Price = 0;
+            for (int i = 0; i < Item_Name.Count; i++)
+            {
+                if (item.Equals(Item_Name[i]))
+                {
+                    Price = Item_Price[i];
+                }
+            }
+            return Price;
         }
     }
 }

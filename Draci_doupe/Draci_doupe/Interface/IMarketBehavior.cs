@@ -11,9 +11,11 @@ namespace Draci_doupe.Interface
         int ItemId { get; set; }
         string ItemName { get; set; }
         string ItemType { get; set; }
+        int ItemPrice { get; set; }
 
-        void MarketItems(List<int> Id, List<string> Name, List<string> Type);
+        void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price);
         List<int> GetID();
         List<string> GetName();
+        List<int> GetPrice();
     }
 }

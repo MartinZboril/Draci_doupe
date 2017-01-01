@@ -14,6 +14,7 @@ namespace Draci_doupe.Classes
         List<string> Market_type = new List<string>();
         List<int> MarketItemID = new List<int>();
         public List<string> MarketItemName = new List<string>();
+        public List<int> MarketItemPrice = new List<int>();
         public Market()
         {
 
@@ -32,22 +33,23 @@ namespace Draci_doupe.Classes
             get { return _markettype; }
             set { _markettype = value; }
         }
-        public void AddItemToMarket(int number, string item)
+        public void AddItemToMarket(int number, string item, int price)
         {
             MarketItemID.Add(number);
             MarketItemName.Add(item);
-            
+            MarketItemPrice.Add(price);
         }
-        public void MarketItems(List<int> Id, List<string> Name, List<string> Type)
+        public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price)
         {
             IMarketBehavior marketBehavior = new PubMarketBehavior();
-            marketBehavior.MarketItems(Id, Name, Type);
+            marketBehavior.MarketItems(Id, Name, Type, Price);
             List<int> MarketItemId = marketBehavior.GetID();
             List<string> MarketItemName = marketBehavior.GetName();
+            List<int> MarketItemPrice = marketBehavior.GetPrice();
 
             for (int i = 0; i < MarketItemId.Count; i++)
             {
-                AddItemToMarket(MarketItemId[i], MarketItemName[i]);
+                AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
             }
         }
     }

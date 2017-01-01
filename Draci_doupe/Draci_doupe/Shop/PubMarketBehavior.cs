@@ -13,14 +13,16 @@ namespace Draci_doupe.Shop
         {
 
         }
-        public PubMarketBehavior(int Id, string Name, string Type)
+        public PubMarketBehavior(int Id, string Name, string Type, int Price)
         {
             _itemid = Id;
             _itemname = Name;
             _itemtype = Type;
+            _itemprice = Price;
         }
         List<int> Item_ID = new List<int>();
         List<string> Item_Name = new List<string>();
+        List<int> Item_Price = new List<int>();
         private int _itemid;
         public int ItemId
         {
@@ -42,7 +44,14 @@ namespace Draci_doupe.Shop
             set { _itemtype = value; }
         }
 
-        public void MarketItems(List<int> Id, List<string> Name, List<string> Type)
+        private int _itemprice;
+        public int ItemPrice
+        {
+            get { return _itemprice; }
+            set { _itemprice = value; }
+        }
+
+        public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price)
         {
             
             //List<PubMarketBehavior> items = new List<PubMarketBehavior>();
@@ -52,6 +61,7 @@ namespace Draci_doupe.Shop
                     //items.Add(new PubMarketBehavior(Id[i], Name[i], Type[i]));
                     Item_ID.Add(Id[i]);
                     Item_Name.Add(Name[i]);
+                    Item_Price.Add(Price[i]);
                 }
                 
             }
@@ -63,6 +73,10 @@ namespace Draci_doupe.Shop
         public List<string> GetName()
         {
             return Item_Name;
+        }
+        public List<int> GetPrice()
+        {
+            return Item_Price;
         }
     }
 }

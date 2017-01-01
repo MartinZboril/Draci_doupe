@@ -46,6 +46,12 @@ namespace Draci_doupe
             get { return _lives; }
             set { _lives = value; }
         }
+        private int _experience;
+        public int Experience
+        {
+            get { return _experience; }
+            set { _experience = value; }
+        }
         public string GetHelper(string hero)
         {
             string Result;
@@ -58,6 +64,10 @@ namespace Draci_doupe
             }
             Result = "1/2";
             return Result;       
+        }
+        public void AddExperience(int xp)
+        {
+            _experience += xp;
         }
     }
 }

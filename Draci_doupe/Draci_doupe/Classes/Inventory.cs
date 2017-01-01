@@ -8,27 +8,20 @@ namespace Draci_doupe
 {
     public class Inventory
     {
+        List<int> itemid = new List<int>();
+        List<string> itemname = new List<string>();
         public Inventory()
         {
 
         }
-        public Inventory(int id, string name)
+        public void AddItem(int id, string item)
         {
-            _itemid = id;
-            _itemname = name;
+            itemid.Add(id);
+            itemname.Add(item);
         }
-        private int _itemid;
-        public int ItemId
+        public List<string> GetCollection()
         {
-            get { return _itemid; }
-            set { _itemid = value; }
+            return itemname;
         }
-        private string _itemname;
-        public string ItemName
-        {
-            get { return _itemname; }
-            set { _itemname = value; }
-        }
-        public string GetItem => ItemName;
     }
 }

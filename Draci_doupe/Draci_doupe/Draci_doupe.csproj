@@ -63,6 +63,9 @@
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Task.cs" />
+    <Compile Include="Interface\IProgressBarValue.cs" />
+    <Compile Include="ProgressBar\LevelProgressBar.cs" />
+    <Compile Include="ProgressBar\LivesProgressBar.cs" />
     <Compile Include="Shop\PubMarketBehavior.cs" />
     <Page Include="Game.xaml">
       <SubType>Designer</SubType>
@@ -112,5 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
