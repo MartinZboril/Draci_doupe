@@ -14,7 +14,7 @@ namespace Draci_doupe.ProgressBar
 
         }
 
-        public LivesProgressBar(int lives, int level)
+        public LivesProgressBar(double lives, int level)
         {
             _minimum = 0;
             _maximum = 100 + (level * 10);
@@ -35,8 +35,8 @@ namespace Draci_doupe.ProgressBar
             set { _minimum = value; }
         }
 
-        private int _progress;
-        public int Progress
+        private double _progress;
+        public double Progress
         {
             get { return _progress; }
             set { _progress = value; }

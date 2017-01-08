@@ -12,6 +12,8 @@ namespace Draci_doupe
         List<string> Item_Name = new List<string>();
         List<string> Item_Type = new List<string>();
         List<int> Item_Price = new List<int>();
+        List<string> Item_BonusType = new List<string>();
+        List<int> Item_Bonus = new List<int>();
         public Item()
         {
 
@@ -41,6 +43,22 @@ namespace Draci_doupe
             Item_Type.Add("Předmět");
             Item_Type.Add("Pití");
             Item_Type.Add("Pití");
+
+            Item_BonusType.Add("Nic");
+            Item_BonusType.Add("Útok");
+            Item_BonusType.Add("Obrana");
+            Item_BonusType.Add("Nic");
+            Item_BonusType.Add("Obrana");
+            Item_BonusType.Add("Životy");
+            Item_BonusType.Add("Životy");
+
+            Item_Bonus.Add(0);
+            Item_Bonus.Add(20);
+            Item_Bonus.Add(10);
+            Item_Bonus.Add(0);
+            Item_Bonus.Add(20);
+            Item_Bonus.Add(30);
+            Item_Bonus.Add(10);
 
             Item_Price.Add(50);
             Item_Price.Add(50);
@@ -77,22 +95,43 @@ namespace Draci_doupe
             get { return _itemprice; }
             set { _itemprice = value; }
         }
+        /// <summary>
+        /// Metoda pro získání ID věci
+        /// </summary>
+        /// <returns>ID věcí</returns>
         public List<int> GetItemsId()
         {
             return Item_ID;
         }
+        /// <summary>
+        /// Metoda pro získání jmen věci
+        /// </summary>
+        /// <returns>Jména věcí</returns>
         public List<string> GetItemsName()
         {
             return Item_Name;
         }
+        /// <summary>
+        /// Metoda pro získání druhu věci
+        /// </summary>
+        /// <returns>Typ věcí</returns>
         public List<string> GetItemsType()
         {
             return Item_Type;
         }
+        /// <summary>
+        /// Metoda pro získání ceny věci
+        /// </summary>
+        /// <returns>Cenu věcí</returns>
         public List<int> GetItemsPrice()
         {
             return Item_Price;
         }
+        /// <summary>
+        /// Metoda pro získání ID věci
+        /// </summary>
+        /// <param name="item">Název věci</param>
+        /// <returns>ID věci</returns>
         public int GetItemId(string item)
         {
             int Id = 0;
@@ -105,17 +144,59 @@ namespace Draci_doupe
             }
             return Id;
         }
-        public int GetItemPrice(string item)
+        /// <summary>
+        /// Metoda pro získání ceny věci
+        /// </summary>
+        /// <param name="item">Název věci</param>
+        /// <returns>Cenu věci</returns>
+        public int GetItemPrice(string item, int money)
         {
             int Price = 0;
             for (int i = 0; i < Item_Name.Count; i++)
             {
                 if (item.Equals(Item_Name[i]))
-                {
-                    Price = Item_Price[i];
+                 {
+                    if (money >= Item_Price[i])
+                    {
+                        Price = Item_Price[i];
+                    }
                 }
             }
             return Price;
+        }
+        /// <summary>
+        /// Metoda pro získání bonusu věci
+        /// </summary>
+        /// <param name="item">Název věci</param>
+        /// <returns>Bonus věci</returns>
+        public int GetItemBonus(int item)
+        {
+            int Bonus = 0;
+            for (int i = 0; i < Item_ID.Count; i++)
+            {
+                if (item.Equals(Item_ID[i]))
+                {
+                    Bonus = Item_Bonus[i];
+                }
+            }
+            return Bonus;
+        }
+        /// <summary>
+        /// Metoda pro získání typu bonusu věci
+        /// </summary>
+        /// <param name="item">Název věci</param>
+        /// <returns>Typ bonusu věci</returns>
+        public string GetItemBonusType(int item)
+        {
+            string BonusType = "";
+            for (int i = 0; i < Item_ID.Count; i++)
+            {
+                if (item.Equals(Item_ID[i]))
+                {
+                    BonusType = Item_BonusType[i];
+                }
+            }
+            return BonusType;
         }
     }
 }

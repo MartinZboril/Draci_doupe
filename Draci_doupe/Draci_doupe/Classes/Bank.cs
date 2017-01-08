@@ -23,12 +23,20 @@ namespace Draci_doupe.Classes
             get { return _money; }
             set { _money = value; }
         }
-
+        /// <summary>
+        /// Metoda pro rozdělení stringu, pro získání čísla
+        /// </summary>
+        /// <param name="name">string pro rozdělení</param>
+        /// <returns>Počet peněz</returns>
         List<string> GetMoneyNum(string name)
         {
             List<string> money = name.Split(' ').ToList<string>();
             return money;
         }
+        /// <summary>
+        /// Metoda pro ziskani info kolik je penez
+        /// </summary>
+        /// <param name="num">Počet peněz pro přidání</param>
         public void GetMoney(string num)
         {
             int number = int.Parse(num);

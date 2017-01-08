@@ -33,12 +33,25 @@ namespace Draci_doupe.Classes
             get { return _markettype; }
             set { _markettype = value; }
         }
+        /// <summary>
+        /// Metoda pro přidání věcí do obchodu
+        /// </summary>
+        /// <param name="number">ID věci</param>
+        /// <param name="item">Název věci</param>
+        /// <param name="price">Cena věci</param>
         public void AddItemToMarket(int number, string item, int price)
         {
             MarketItemID.Add(number);
             MarketItemName.Add(item);
             MarketItemPrice.Add(price);
         }
+        /// <summary>
+        /// Metoda pro získání určitého zboží(věcí) do nabídky marketu
+        /// </summary>
+        /// <param name="Id">Kolekce ID věcí</param>
+        /// <param name="Name">Kolekce názvu věcí</param>
+        /// <param name="Type">Kolekce typu věcí</param>
+        /// <param name="Price">Kolekce cen věcí</param>
         public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price)
         {
             IMarketBehavior marketBehavior = new PubMarketBehavior();

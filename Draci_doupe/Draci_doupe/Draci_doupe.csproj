@@ -54,10 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attack\ArcherAttackBehavior.cs" />
     <Compile Include="Attack\BasicAttackBehavior.cs" />
+    <Compile Include="Attack\FighterAttackBehavior.cs" />
     <Compile Include="Classes\Bank.cs" />
+    <Compile Include="Classes\Chapters.cs" />
+    <Compile Include="Classes\Enemies.cs" />
     <Compile Include="Classes\Enemy.cs" />
     <Compile Include="Classes\Market.cs" />
+    <Compile Include="Classes\Tasks.cs" />
     <Compile Include="Interface\IAttackBehavior.cs" />
     <Compile Include="Classes\Inventory.cs" />
     <Compile Include="Classes\Item.cs" />

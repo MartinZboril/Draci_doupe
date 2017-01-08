@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Draci_doupe.Attack
 {
-    public class BasicAttackBehavior : IAttackBehavior
+    class FighterAttackBehavior : IAttackBehavior
     {
         /// <summary>
-        /// Metoda pro útok klasický 
+        /// Metoda pro útok šermíře 
         /// </summary>
         /// <param name="enemy">Nepřítel</param>
         /// <param name="attackStrenght">Síla útoku</param>
         public void Attack(Enemy enemy, int attackStrenght)
         {
-            enemy.EnemyLives -= attackStrenght - ((enemy.EnemyDefense/100)*enemy.EnemyLives);
+            enemy.EnemyLives -= (attackStrenght * 2) - ((enemy.EnemyDefense / 100) * enemy.EnemyLives);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,7 +25,8 @@ namespace Draci_doupe
     /// </summary>
     public partial class Game : Page
     {
-        Person person = new Person(110);
+        //---- Instance tříd ----
+        Person person = new Person();
         Inventory inventory = new Inventory();
         Chapter chapter = new Chapter(0);
         Task task = new Task(0);
@@ -35,81 +37,20 @@ namespace Draci_doupe
         Bank money = new Bank();
         LivesProgressBar lives = new LivesProgressBar();
         LevelProgressBar levels = new LevelProgressBar();
+
+        bool scout;
+        bool healer;
+
         public Game()
         {
             InitializeComponent();
             inventory.AddItem(item.ItemId, item.ItemName);
-            Title.Text = chapter.Name_Chapter;
-            Text.Text = chapter.Text_Chapter;
-            Task_title.Text = task.Name_task;
             ItemSource();
         }
 
-        private void HintButton_Click(object sender, RoutedEventArgs e)
-        {
+        //---- Ověření hodnot z checkboxu ----
 
-        }
-
-        private void HelperButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            HelperPopUp.IsOpen = true;
-            Helper.Text = person.Helper;
-            Helper1.Text = person.Helper1;
-        }
-
-        private void HelperPopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            HelperPopUp.IsOpen = false;
-        }
-
-        private void ProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            lives = new LivesProgressBar(person.Lives, person.Level);
-            levels = new LevelProgressBar(person.Experience, person.Level);
-            LivesProgressbar.DataContext = lives;
-            LevelsProgressbar.DataContext = levels;
-            ProfilePopUp.IsOpen = true;
-            Name.Text = person.Name;
-            Level.Text = person.Level.ToString();
-            
-        }
-
-        private void ProfilePopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            ProfilePopUp.IsOpen = false;
-        }
-
-        private void InventoryButton_Click(object sender, RoutedEventArgs e)
-        {
-            InventoryPopUp.IsOpen = true;
-        }
-
-        private void InventoryPopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            InventoryPopUp.IsOpen = false;
-        }
-
-        private void AttackPopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            AttackPopUp.IsOpen = false;
-        }
-
-        private void MarketButton_Click(object sender, RoutedEventArgs e)
-        {
-            MarketPopUp.IsOpen = true;
-            Money.Text = money.Money.ToString();
-        }
-
-        private void MarketPopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            MarketPopUp.IsOpen = false;
-            InventoryButton.Visibility = System.Windows.Visibility.Visible;
-            ProfileButton.Visibility = System.Windows.Visibility.Visible;
-            HelperButton.Visibility = System.Windows.Visibility.Visible;
-            MarketButton.Visibility = System.Windows.Visibility.Hidden;
-        }
-
+        //Metoda pro ověření hodnoty z checkboxu úkolu
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox chkZone = (CheckBox)sender;
@@ -118,6 +59,8 @@ namespace Draci_doupe
                 Continue_button.Content = person.GetHelper(chkZone.Tag.ToString());
                 if (!person.Helper.Equals("Neni") && !person.Helper1.Equals("Neni"))
                 {
+                    scout = person.Scout(person.Helper, person.Helper1);
+                    healer = person.Healer(person.Helper, person.Helper1);
                     Continue();
                     Continue_button.Visibility = System.Windows.Visibility.Hidden;
                 }
@@ -125,7 +68,7 @@ namespace Draci_doupe
             } else if(task.Type_task.Equals("vyber"))
             {
                 if (chkZone.Tag.ToString().Equals("Ano"))
-                {                  
+                {
                     item = new Item(task.Reward_Task);
                     if (item.ItemName.Contains("kamínků"))
                     {
@@ -143,7 +86,7 @@ namespace Draci_doupe
                 int num = 1;
                 if (chkZone.Tag.ToString().Equals("Ano"))
                 {
-                    player = new Enemy(person.Name, person.Lives);
+                    player = new Enemy(person.Name, person.Lives, person.Attack, person.Defense);
                     enemy = new Enemy(0);
                     AttackPopUp.IsOpen = true;
                 } else
@@ -177,10 +120,7 @@ namespace Draci_doupe
                     List<string> MarketItemsType = item.GetItemsType();
                     List<int> MarketItemsPrice = item.GetItemsPrice();
                     market.MarketItems(MarketItemsId, MarketItemsName, MarketItemsType, MarketItemsPrice);
-                    InventoryButton.Visibility = System.Windows.Visibility.Hidden;
-                    ProfileButton.Visibility = System.Windows.Visibility.Hidden;
-                    HelperButton.Visibility = System.Windows.Visibility.Hidden;
-                    MarketButton.Visibility = System.Windows.Visibility.Visible;
+                    MarketButtonUI();
                 }
                 else
                 {
@@ -193,36 +133,166 @@ namespace Draci_doupe
             {
                 Continue();
             }
-            Title.Text = chapter.Name_Chapter;
-            Text.Text = chapter.Text_Chapter;
-            Task_title.Text = task.Name_task;
             ItemSource();
         }
-        private void ItemSource()
+
+        //Metoda pro použití předmětu
+        private void Checkbox_ItemUse_Checked(object sender, RoutedEventArgs e)
         {
-            List<string> Task_option = new List<string>();
-            Task_option = task.TaskSplit(task.Text_Task);
-            Task_1.ItemsSource = Task_option;
-            Inventory_List.ItemsSource = inventory.GetCollection();
-            Market_List.ItemsSource = market.MarketItemName;
-            Market_Price_List.ItemsSource = market.MarketItemPrice;
-            person.Level = levels.LevelUp(person.Experience, person.Level, levels.Maximum);
-            lives = new LivesProgressBar(person.Lives, person.Level);
-            LivesProgressbar.DataContext = lives;
-            levels = new LevelProgressBar(person.Experience, person.Level);
-            LevelsProgressbar.DataContext = levels;
+            CheckBox chkZone = (CheckBox)sender;
+            int num = int.Parse(chkZone.Tag.ToString());
+            string ItemBonusType = item.GetItemBonusType(num);
+            int ItemBonus = item.GetItemBonus(num);
+
+            if (ItemBonusType.Equals("Životy"))
+            {
+                person.Lives += ItemBonus;
+            }
+            else if (ItemBonusType.Equals("Útok"))
+            {
+                person.Attack += ItemBonus;
+            }
+            else if (ItemBonusType.Equals("Obrana"))
+            {
+                person.Defense += ItemBonus;
+            }
+
         }
 
+        //Metoda pro nákup zboží
+        private void Checkbox_Pay_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox chkZone = (CheckBox)sender;            
+            int Id = item.GetItemId(chkZone.Content.ToString());
+            money.Money -= item.GetItemPrice(chkZone.Content.ToString(), money.Money);
+            inventory.AddItemMarket(Id, chkZone.Content.ToString(), money.Money, item.GetItemPrice(chkZone.Content.ToString(), money.Money));
+            Money.Text = money.Money.ToString();
+        }
+
+        //---- Útok ----
+
+        //Metoda pro útok na nepřítele, po stisknutí tlačítka
         private void AttackButton_Click(object sender, RoutedEventArgs e)
         {
+            FighterButton.Visibility = person.Fighter(person.Helper, person.Helper1);
+            ArcheryButton.Visibility = person.Archer(person.Helper, person.Helper1);
+
             Player.Text = player.EnemyName;
             Enemy.Text = enemy.EnemyName;
 
             PlayerLives.Text = player.EnemyLives.ToString();
             EnemyLives.Text = enemy.EnemyLives.ToString();
+            GameInfo();
+            player.AttackEnemy(enemy, player.EnemyAttackStrength);
+            enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
+            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
+        }
 
+        //Metoda pro útok na nepřítele, šermířem, po stisknutí tlačítka
+        private void FigtherButton_Click(object sender, RoutedEventArgs e)
+        {
+            player.FighterAttackEnemy(enemy, player.EnemyAttackStrength);
+            PlayerLives.Text = player.EnemyLives.ToString();
+            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
+            EnemyLives.Text = enemy.EnemyLives.ToString();
             GameInfo();
         }
+
+        //Metoda pro útok na nepřítele, lučištníkem, po stisknutí tlačítka
+        private void ArcheryButton_Click(object sender, RoutedEventArgs e)
+        {
+            player.ArcherAttackEnemy(enemy, player.EnemyAttackStrength);
+            PlayerLives.Text = player.EnemyLives.ToString();
+            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
+            EnemyLives.Text = enemy.EnemyLives.ToString();
+            GameInfo();
+        }
+
+        //Metoda pro přidání dalšího levelu
+        private void LevelUp(int Experience, int Level, int Maximum)
+        {
+            int num = levels.LevelUp(person.Experience, person.Level, levels.Maximum);
+            if (num == 1)
+            {
+                person.Experience = 0;
+                person.Level += 1; 
+            }
+        }
+
+        //---- PopUp ---- 
+
+        //---- PopUp pro nápovědu ----
+        private void HintButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //---- PopUp pro spolubojovníky ----
+        private void HelperButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            HelperPopUp.IsOpen = true;
+            Helper.Text = person.Helper;
+            Helper1.Text = person.Helper1;
+        }
+
+        private void HelperPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            HelperPopUp.IsOpen = false;
+        }
+
+        //---- PopUp pro profil ----
+        private void ProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            LevelUp(person.Experience, person.Level, levels.Maximum);
+            lives = new LivesProgressBar(person.Lives, person.Level);
+            levels = new LevelProgressBar(person.Experience, person.Level);
+            LivesProgressbar.DataContext = lives;
+            LevelsProgressbar.DataContext = levels;
+            ProfilePopUp.IsOpen = true;
+            Name.Text = person.Name;
+            Level.Text = person.Lives.ToString();
+        }
+
+        private void ProfilePopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            ProfilePopUp.IsOpen = false;
+        }
+
+        //---- PopUp pro inventář ----
+        private void InventoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryPopUp.IsOpen = true;
+        }
+
+        private void InventoryPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryPopUp.IsOpen = false;
+        }
+
+        //----- PopUp pro útok
+        private void AttackPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            AttackPopUp.IsOpen = false;
+        }
+
+        //---- PopUp pro obchod -----
+        private void MarketButton_Click(object sender, RoutedEventArgs e)
+        {
+            MarketPopUp.IsOpen = true;
+            Money.Text = money.Money.ToString();
+        }
+
+        private void MarketPopUpClose_Click(object sender, RoutedEventArgs e)
+        {
+            MarketPopUp.IsOpen = false;
+            InventoryButton.Visibility = System.Windows.Visibility.Visible;
+            ProfileButton.Visibility = System.Windows.Visibility.Visible;
+            HelperButton.Visibility = System.Windows.Visibility.Visible;
+            MarketButton.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        //---- Design ----
         private void GameInfo()
         {
             if (player.EnemyLives <= 0 || enemy.EnemyLives <= 0)
@@ -248,47 +318,59 @@ namespace Draci_doupe
                 }
                 else if (enemy.EnemyLives <= 0)
                 {
-                    person.AddExperience(50);
+                    person.AddExperience(150);
                     Result.Text = "Vyhrál " + player.EnemyName;
                     AttackButton.Visibility = System.Windows.Visibility.Hidden;
                     ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
                     FighterButton.Visibility = System.Windows.Visibility.Hidden;
                     AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
-                    person.Lives = player.EnemyLives;
+
+                    if (healer)
+                    {
+                        person.Lives = player.EnemyLives + (0.25 * player.EnemyLives);
+                    }
+                    else
+                    {
+                        person.Lives = player.EnemyLives;
+                    }
                     AttackPopUpClose.Content = "Zavrit";
                 }
             }
-            else
-            {
-                player.AttackEnemy(enemy, player.EnemyAttackStrength);
-                enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
-            }
         }
-        
+
+        private void MarketButtonUI()
+        {
+            InventoryButton.Visibility = System.Windows.Visibility.Hidden;
+            ProfileButton.Visibility = System.Windows.Visibility.Hidden;
+            HelperButton.Visibility = System.Windows.Visibility.Hidden;
+            MarketButton.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        //---- DataBinding ---- 
+        private void ItemSource()
+        {
+            Title.DataContext = chapter;
+            Text.DataContext = chapter;
+            Task_title.DataContext = task;
+            List<string> Task_option = new List<string>();
+            Task_option = task.TaskSplit(task.Text_Task);
+            Task_1.ItemsSource = Task_option;
+            Inventory_List.ItemsSource = inventory.GetCollection();
+            InventoryID_List.ItemsSource = inventory.GetCollectionID();
+            Market_List.ItemsSource = market.MarketItemName;
+            Market_Price_List.ItemsSource = market.MarketItemPrice;
+            LevelUp(person.Experience, person.Level, levels.Maximum);
+            lives = new LivesProgressBar(person.Lives, person.Level);
+            LivesProgressbar.DataContext = lives;
+            levels = new LevelProgressBar(person.Experience, person.Level);
+            LevelsProgressbar.DataContext = levels;
+        }
+
+        //Metoda pro pokračování, přidá další kapitolu
         private void Continue()
         {
             chapter = new Chapter(chapter.ID_Chapter + 1);
             task = new Task(task.Id_Task + 1);
-        }
-
-        private void Checkbox_Pay_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox chkZone = (CheckBox)sender;
-            
-            int Id = item.GetItemId(chkZone.Content.ToString());
-            money.Money -= item.GetItemPrice(chkZone.Content.ToString());
-            inventory.AddItem(Id, chkZone.Content.ToString());
-            Money.Text = money.Money.ToString();
-        }
-
-        private void FigtherButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ArcheryButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

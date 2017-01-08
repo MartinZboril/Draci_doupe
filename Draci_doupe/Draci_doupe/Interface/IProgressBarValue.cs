@@ -10,6 +10,6 @@ namespace Draci_doupe.Interface
     {
         int Maximum { get; set; }
         int Minimum { get; set; }
-        int Progress { get; set; }
+        double Progress { get; set; }
     }
 }

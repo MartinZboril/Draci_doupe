@@ -4,48 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Draci_doupe.Classes;
 
 namespace Draci_doupe
 {
     public class Enemy
     {
-        List<int> Enemy_ID = new List<int>();
-        List<string> Enemy_Name = new List<string>();
-        List<int> Enemy_Lives = new List<int>();
-        List<int> Enemy_AttackStrength = new List<int>();
+        Enemies enemies = new Enemies();
         public Enemy()
         {
 
         }
-        public Enemy(string name, int lives)
+        public Enemy(string name, double lives, int attack, double defense)
         {
             _enemyid = 0;
             _enemyname = name;
             _enemylives = lives;
-            _enemyattackstrength = 10;
+            _enemyattackstrength = attack;
+            _enemydefense = defense;
         }
         public Enemy(int n)
         {
-            Enemy_ID.Add(1);
-            Enemy_ID.Add(2);
-            Enemy_ID.Add(3);
-
-            Enemy_Name.Add("Nepřátelská karavana");
-            Enemy_Name.Add("Horské zvíře");
-            Enemy_Name.Add("Jeskynní lidé");
-
-            Enemy_Lives.Add(50);
-            Enemy_Lives.Add(130);
-            Enemy_Lives.Add(180);
-
-            Enemy_AttackStrength.Add(5);
-            Enemy_AttackStrength.Add(35);
-            Enemy_AttackStrength.Add(40);
-
-            _enemyid = Enemy_ID[n];
-            _enemyname = Enemy_Name[n];
-            _enemylives = Enemy_Lives[n];
-            _enemyattackstrength = Enemy_AttackStrength[n];
+            _enemyid = n;
+            _enemyname = enemies.GetEnemyName(n);
+            _enemylives = enemies.GetEnemyLives(n);
+            _enemyattackstrength = enemies.GetEnemyAttackStrength(n);
+            _enemydefense = enemies.GetEnemyDefense(n);
         }
         private int _enemyid;
         public int EnemyId
@@ -59,8 +43,8 @@ namespace Draci_doupe
             get { return _enemyname; }
             set { _enemyname = value; }
         }
-        private int _enemylives;
-        public int EnemyLives
+        private double _enemylives;
+        public double EnemyLives
         {
             get { return _enemylives; }
             set { _enemylives = value; }
@@ -71,11 +55,43 @@ namespace Draci_doupe
             get { return _enemyattackstrength; }
             set { _enemyattackstrength = value; }
         }
-
+        private double _enemydefense;
+        public double EnemyDefense
+        {
+            get { return _enemydefense; }
+            set { _enemydefense = value; }
+        }
+        /// <summary>
+        /// Útok nepřítele, klasický
+        /// </summary>
+        /// <param name="enemy">Nepřítel na kterého se útočí</param>
+        /// <param name="attack">Síla útoku</param>
         public void AttackEnemy(Enemy enemy, int attack)
         {
             int _attackStrenght = attack;
             IAttackBehavior attackBehavior = new BasicAttackBehavior();
+            attackBehavior.Attack(enemy, _attackStrenght);
+        }
+        /// <summary>
+        /// Útok nepřítele, jako šermíř
+        /// </summary>
+        /// <param name="enemy">Nepřítel na kterého se útočí</param>
+        /// <param name="attack">Síla útoku</param>
+        public void FighterAttackEnemy(Enemy enemy, int attack)
+        {
+            int _attackStrenght = attack;
+            IAttackBehavior attackBehavior = new FighterAttackBehavior();
+            attackBehavior.Attack(enemy, _attackStrenght);
+        }
+        /// <summary>
+        /// Útok nepřítele, lučištník
+        /// </summary>
+        /// <param name="enemy">Nepřítel na kterého se útočí</param>
+        /// <param name="attack">Síla útoku</param>
+        public void ArcherAttackEnemy(Enemy enemy, int attack)
+        {
+            int _attackStrenght = attack;
+            IAttackBehavior attackBehavior = new ArcherAttackBehavior();
             attackBehavior.Attack(enemy, _attackStrenght);
         }
     }

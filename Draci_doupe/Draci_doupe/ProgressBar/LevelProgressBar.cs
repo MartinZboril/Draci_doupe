@@ -35,19 +35,20 @@ namespace Draci_doupe.ProgressBar
             set { _minimum = value; }
         }
 
-        private int _progress;
-        public int Progress
+        private double _progress;
+        public double Progress
         {
             get { return _progress; }
             set { _progress = value; }
         }
         public int LevelUp(int experience, int level, int maximum)
         {
-            if (experience == maximum)
+            int num = 0;
+            if (experience >= maximum)
             {
-                level += 1;
+                num = 1;
             }
-            return level;
+            return num;
         }
     }
 }

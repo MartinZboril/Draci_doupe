@@ -3,74 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Draci_doupe.Classes;
 
 namespace Draci_doupe
 {
     public class Task
     {
-        List<int> Task_ID = new List<int>();
-        List<string> Task_Type = new List<string>();
-        List<string> Task_Title = new List<string>();
-        List<string> Task_Text = new List<string>();
-        List<int> Task_Reward = new List<int>();
-
+        Tasks tasks = new Tasks();
         public Task(int n)
-        {
-            Task_ID.Add(0);
-            Task_ID.Add(1);
-            Task_ID.Add(2);
-            Task_ID.Add(3);
-
-            Task_ID.Add(4);
-            Task_ID.Add(5);
-            Task_ID.Add(6);
-            Task_ID.Add(7);
-
-            Task_Type.Add("vyber_hrdiny");
-            Task_Type.Add("vyber");
-            Task_Type.Add("vyber");
-            Task_Type.Add("pokracovat");
-
-            Task_Type.Add("boj");
-            Task_Type.Add("odmena");
-            Task_Type.Add("hospoda");
-            Task_Type.Add("nakup");
-
-            Task_Title.Add("Vyber hrdinu");
-            Task_Title.Add("Vzít/nevzít");
-            Task_Title.Add("Vzít/nevzít");
-            Task_Title.Add("Zahájit cestu");
-
-            Task_Title.Add("Bojovat/nebojovat");
-            Task_Title.Add("Vem si to");
-            Task_Title.Add("Odpočinek Ano/Ne");
-            Task_Title.Add("Vyber co chceš");
-
-            Task_Text.Add("Šermíř,Lučištník,Léčitel,Průzkumník");
-            Task_Text.Add("Ano, Ne");
-            Task_Text.Add("Ano, Ne");
-            Task_Text.Add("Ano");
-
-            Task_Text.Add("Ano, Ne");
-            Task_Text.Add("Ano");
-            Task_Text.Add("Ano, Ne");
-            Task_Text.Add("Ano");
-
-            Task_Reward.Add(0);
-            Task_Reward.Add(2);
-            Task_Reward.Add(3);
-            Task_Reward.Add(0);
-
-            Task_Reward.Add(0);
-            Task_Reward.Add(4);
-            Task_Reward.Add(0);
-            Task_Reward.Add(0);
-
-            _id_task = Task_ID[n];
-            _type_task = Task_Type[n];
-            _name_task = Task_Title[n];
-            _text_task = Task_Text[n];
-            _reward_task = Task_Reward[n];
+        {           
+            _id_task = n;
+            _type_task = tasks.GetTaskType(n);
+            _name_task = tasks.GetTaskName(n);
+            _text_task = tasks.GetTaskText(n);
+            _reward_task = tasks.GetTaskReward(n);
         }
         private int _id_task;
         public int Id_Task
@@ -106,6 +52,11 @@ namespace Draci_doupe
             get { return _reward_task; }
             set { _reward_task = value; }
         }
+        /// <summary>
+        /// Metoda pro rozdělení string, možnosti pro úkoly
+        /// </summary>
+        /// <param name="task">String možností</param>
+        /// <returns>Kolekci možností</returns>
         public List<string> TaskSplit(string task)
         {
             List<string> task_option = task.Split(',').ToList<string>();
