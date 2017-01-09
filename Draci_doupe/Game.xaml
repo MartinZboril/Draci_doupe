@@ -1,0 +1,215 @@
+﻿<Page x:Class="Draci_doupe.Game"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Draci_doupe"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300" Background="WhiteSmoke"  MinHeight="500" MinWidth="925" MaxHeight="500" MaxWidth="925" Height="500" Width="925"
+      Title="Game">
+
+    <Grid>
+
+        <Frame x:Name="_gamePageFrame" NavigationUIVisibility="Hidden"/>
+
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--Content-Text-->
+            <Grid x:Name="ContentGrid" Background="White" Grid.Column="0" Grid.Row="0">
+                <TextBlock x:Name="Title" Text="{Binding Name_Chapter}" FontSize="36" FontWeight="Bold" Margin="50,50,24,296"></TextBlock>
+                <TextBlock x:Name="Text" Text="{Binding Text_Chapter}" FontSize="18" Margin="50,109,24,10" TextWrapping="Wrap"></TextBlock>
+            </Grid>
+
+            <!--Content-Action-->
+            <Grid x:Name="ContentActionGrid" Background="White" Grid.Column="1" Grid.Row="0">
+                <TextBlock x:Name="Task_title" Text="{Binding Name_task}" FontSize="36" FontWeight="Bold" Margin="32,34,31,313" ></TextBlock>
+                <ListView x:Name="Task_1" ItemsSource="{Binding}" Margin="32,92,79,106">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <CheckBox x:Name="Checkbox" Checked="CheckBox_Checked" IsChecked="False" Content="{Binding}" Tag="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="Continue_button" Content="0/2" Margin="168,320,190,38" Cursor="No"/>
+            </Grid>
+
+            <!--Menu-->
+            <Grid x:Name="MenuGrid" Background="#FFE8E8E8" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                <Button x:Name="InventoryButton" Content="Inventar" Click="InventoryButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
+                <Button x:Name="MarketButton" Content="Obchod" Visibility="Hidden" Click="MarketButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
+                <Button x:Name="ProfileButton" Content="Profil" Click="ProfileButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4"/>
+                <Button x:Name="HelperButton" Content="Pomocnici" Click="HelperButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="266,10,570,55"/>
+                <Button x:Name="HintButton" Content="Napoveda" Click="HintButton_Click" Background="White" Width="80" Height="35" Margin="800,10,45,55"/>
+            </Grid>
+
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="HelperPopUp" Width="909" Height="400" PopupAnimation="Slide" >
+                <Grid Background="#FFF1F1F1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Pomocnici</TextBlock>
+                    <TextBlock x:Name="Helper" Grid.Column="0" Margin="42,53,48,39" FontSize="22"></TextBlock>
+                    <TextBlock x:Name="Helper1" Grid.Column="1" Margin="42,53,48,39" FontSize="22"></TextBlock>
+                    <Button x:Name="HelperPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="HelperPopUpClose_Click"></Button>
+                </Grid>
+            </Popup>
+
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="InventoryPopUp" Width="909" Height="400" PopupAnimation="Slide" >
+                <Grid Background="#FFF1F1F1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Inventar</TextBlock>
+                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="InventoryID_List" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="136,92,228,30">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <CheckBox x:Name="Checkbox_ItemUse" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" Tag="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="InventoryPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="InventoryPopUpClose_Click"></Button>
+                </Grid>
+            </Popup>
+
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="ProfilePopUp" Width="909" Height="400" PopupAnimation="Slide" >
+                <Grid Background="#FFF1F1F1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Profil hráče</TextBlock>
+                    <TextBlock Text="Hráč:" Grid.Column="0" Margin="31,73,354,197" FontSize="24" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <TextBlock x:Name="Name" Grid.Column="0" Margin="100,73,42,197" FontSize="24"></TextBlock>
+                    <TextBlock Text="Level:" Grid.Column="0" Margin="31,112,354,156" FontSize="24" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Level" Grid.Column="0" Margin="105,112,58,156" FontSize="24"></TextBlock>
+                    <TextBlock Text="Pomocníci:" Grid.Column="0" Margin="31,149,300,119" FontSize="24" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="HelpersInfo" Grid.Column="0" Margin="159,149,63,119" FontSize="24" Text="{Binding GetHelpers}"></TextBlock>
+                    <TextBlock Text="Další level:" Grid.Column="0" Margin="31,270,354,10" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="0" Margin="31,230,375,50" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <ProgressBar x:Name="LivesProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="84,230,37,50" />
+                    <ProgressBar x:Name="LevelsProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="105,270,16,10" />
+                    <Button x:Name="ProfilePopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="ProfilePopUpClose_Click"></Button>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Útok:" FontSize="24" FontWeight="Bold" Margin="42,73,344,200" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="attack" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="116,73,219,200" RenderTransformOrigin="0.475,0.537"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Obrana:" FontSize="24" FontWeight="Bold" Margin="42,112,317,161" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="defense" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="143,112,192,161" RenderTransformOrigin="0.5,0.537"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Zkušenosti:" FontSize="24" FontWeight="Bold" Margin="42,149,279,124" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="experienceinfo" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="181,149,154,124" RenderTransformOrigin="0.508,0.611"/>
+                </Grid>
+            </Popup>
+
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="AttackPopUp" Width="909" Height="500" PopupAnimation="Slide" >
+                <Grid Background="#FFF1F1F1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="400"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Utok</TextBlock>
+                    <TextBlock Text="Jméno:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Player" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="129,69,50,302" Height="29"></TextBlock>
+                    <TextBlock Text="Jméno:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Enemy" Grid.Column="1" Margin="130,69,63,302" FontSize="24" VerticalAlignment="Center" Height="29"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerLives" Grid.Column="0" FontSize="24" Margin="129,109,155,262"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyLives" Grid.Column="1" FontSize="24" Margin="125,109,160,262"></TextBlock>
+                    <TextBlock x:Name="Result" TextAlignment="Center"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" Margin="275,356,275,10" FontWeight="Bold" Grid.ColumnSpan="2" Height="34"/>
+                    <TextBlock Text="Útok:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,347,162" Height="32" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyAttackBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="113,209,172,162"></TextBlock>
+                    <TextBlock Text="Obrana:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,312,117" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyDefenseBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="138,238,147,133"></TextBlock>
+                    <TextBlock Text="Útok:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,344,162" Height="32" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerAttackBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="113,209,172,162"></TextBlock>
+                    <TextBlock Text="Obrana:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,317,117" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerDefenseBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="138,238,147,133"></TextBlock>
+                    <Button x:Name="AttackPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="AttackPopUpClose_Click" Visibility="Hidden"></Button>
+                    <Button x:Name="GameEndButton" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Konec" Click="GameEndButton_Click" Visibility="Hidden"></Button>
+                    <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Začít" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
+                    <Button x:Name="FighterButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Šermíř" Click="FigtherButton_Click" Visibility="Hidden" Margin="178,25,176,25"></Button>
+                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="304,25,50,25"></Button>
+                </Grid>
+            </Popup>
+
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="MarketPopUp" Width="909" Height="400" PopupAnimation="Slide" >
+                <Grid Background="#FFF1F1F1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Market</TextBlock>
+                    <ListView x:Name="Market_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,262,30">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <CheckBox x:Name="Checkbox_Pay" Checked="Checkbox_Pay_Checked" IsChecked="False" Content="{Binding}" Tag="{Binding GetId}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView x:Name="Market_Price_List" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="198,92,193,30">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBlock Text="Peníze:" Grid.Column="0" Grid.Row="1" FontSize="24" Margin="10,29,368,42"></TextBlock>
+                    <TextBlock x:Name="Money" Text="" Grid.Column="0" Grid.Row="1" FontSize="24" FontWeight="Bold" Margin="91,29,186,42"></TextBlock>
+                    <Button x:Name="MarketPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="MarketPopUpClose_Click"></Button>
+                </Grid>
+            </Popup>
+
+        </Grid>
+    </Grid>
+</Page>
