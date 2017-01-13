@@ -171,6 +171,7 @@
                     <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Začít" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
                     <Button x:Name="FighterButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Šermíř" Click="FigtherButton_Click" Visibility="Hidden" Margin="178,25,176,25"></Button>
                     <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="304,25,50,25"></Button>
+                    <Button x:Name="RandomAttackButton" Grid.Row="1" Height="50" Width="100" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="432,25,377,25" Grid.ColumnSpan="2"/>
                 </Grid>
             </Popup>
 

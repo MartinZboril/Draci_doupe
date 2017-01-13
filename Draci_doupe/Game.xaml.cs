@@ -37,6 +37,7 @@ namespace Draci_doupe
         Bank money = new Bank();
         LivesProgressBar lives = new LivesProgressBar();
         LevelProgressBar levels = new LevelProgressBar();
+        Dice dice = new Dice();
 
         bool healer;
         int marketnum = 0;
@@ -131,7 +132,7 @@ namespace Draci_doupe
                     List<string> MarketItemsType = item.GetItemsType();
                     List<int> MarketItemsPrice = item.GetItemsPrice();
                     market.MarketItems(MarketItemsId, MarketItemsName, MarketItemsType, MarketItemsPrice, market.MarketType);
-                    MarketButtonUI();
+                    MarketPopUp.IsOpen = true;
                 }
                 else
                 {
@@ -199,45 +200,43 @@ namespace Draci_doupe
             AttackButton.Content = "Útok";           
             FighterButton.Visibility = person.Fighter(person.Helper, person.Helper1);
             ArcheryButton.Visibility = person.Archer(person.Helper, person.Helper1);
+            RandomAttackButton.Visibility = System.Windows.Visibility.Visible;
             Player.Text = player.EnemyName;
             Enemy.Text = enemy.EnemyName;
-            PlayerLives.Text = player.EnemyLives.ToString();
-            EnemyLives.Text = enemy.EnemyLives.ToString();
-            GameInfo();
             player.AttackEnemy(enemy, player.EnemyAttackStrength);
             enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
-            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
+            EnemiesLivesInfo();
         }
 
         //Metoda pro útok na nepřítele, šermířem, po stisknutí tlačítka
         private void FigtherButton_Click(object sender, RoutedEventArgs e)
         {
             player.FighterAttackEnemy(enemy, player.EnemyAttackStrength);
-            PlayerLives.Text = player.EnemyLives.ToString();
-            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
-            EnemyLives.Text = enemy.EnemyLives.ToString();
-            GameInfo();
+            EnemiesLivesInfo();
         }
 
         //Metoda pro útok na nepřítele, lučištníkem, po stisknutí tlačítka
         private void ArcheryButton_Click(object sender, RoutedEventArgs e)
         {
             player.ArcherAttackEnemy(enemy, player.EnemyAttackStrength);
-            PlayerLives.Text = player.EnemyLives.ToString();
-            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
-            EnemyLives.Text = enemy.EnemyLives.ToString();
-            GameInfo();
+            EnemiesLivesInfo();
         }
 
-        //Metoda pro přidání dalšího levelu
-        private void LevelUp(int Experience, int Level, int Maximum)
+        //Metoda pro útok na nepřítele, speciální útok, symbolizuje hrací kostku
+        private void RandomAttackButton_Click(object sender, RoutedEventArgs e)
+        {
+            enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
+            dice.DiceAttackEnemy(enemy, player.EnemyAttackStrength);
+            EnemiesLivesInfo();
+        }
+
+        //Metoda pro kontrolu zda-li nemá být další level
+        private void ControlLevelUp(int Experience, int Level, int Maximum)
         {
             int num = levels.LevelUp(person.Experience, person.Level, levels.Maximum);
             if (num == 1)
             {
-                person.Experience = 0;
-                person.Level += 1;
-                person.Attack += 10;
+                person.LevelUp();
             }
         }
 
@@ -266,7 +265,7 @@ namespace Draci_doupe
         //---- PopUp pro profil ----
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            LevelUp(person.Experience, person.Level, levels.Maximum);
+            ControlLevelUp(person.Experience, person.Level, levels.Maximum);
             lives = new LivesProgressBar(person.Lives, person.Level);
             levels = new LevelProgressBar(person.Experience, person.Level);
             LivesProgressbar.DataContext = lives;
@@ -328,28 +327,18 @@ namespace Draci_doupe
                 if (player.EnemyLives <= 0 && enemy.EnemyLives <= 0)
                 {
                     Result.Text = "Zemreli oba";
-                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
-                    ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
-                    FighterButton.Visibility = System.Windows.Visibility.Hidden;
-                    GameEndButton.Visibility = System.Windows.Visibility.Visible;
+                    AttacksButtons();
                 }
                 else if (player.EnemyLives <= 0)
                 {
                     Result.Text = "Vyhrál " + enemy.EnemyName;
-                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
-                    ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
-                    FighterButton.Visibility = System.Windows.Visibility.Hidden;
-                    GameEndButton.Visibility = System.Windows.Visibility.Visible;
+                    AttacksButtons();
                 }
                 else if (enemy.EnemyLives <= 0)
                 {
-                    person.AddExperience(150);
+                    person.AddExperience(enemy.EnemyExperience);
                     Result.Text = "Vyhrál " + player.EnemyName;
-                    AttackButton.Visibility = System.Windows.Visibility.Hidden;
-                    ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
-                    FighterButton.Visibility = System.Windows.Visibility.Hidden;
-                    AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
-
+                    AttacksButtons();
                     if (healer)
                     {
                         person.Lives = player.EnemyLives + (0.25 * player.EnemyLives);
@@ -361,15 +350,6 @@ namespace Draci_doupe
                     AttackPopUpClose.Content = "Zavrit";
                 }
             }
-        }
-
-        //Metoda pro skrytí/odkrytí tlačítek při nákupu
-        private void MarketButtonUI()
-        {
-            InventoryButton.Visibility = System.Windows.Visibility.Hidden;
-            ProfileButton.Visibility = System.Windows.Visibility.Hidden;
-            HelperButton.Visibility = System.Windows.Visibility.Hidden;
-            MarketButton.Visibility = System.Windows.Visibility.Visible;
         }
 
         //Metoda pro viditelnost tlačítek při zahájení bitvy
@@ -387,7 +367,28 @@ namespace Draci_doupe
             ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
             FighterButton.Visibility = System.Windows.Visibility.Hidden;
             AttackPopUpClose.Visibility = System.Windows.Visibility.Hidden;
+            RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
             Result.Text = "";
+        }
+
+        //Metoda pro skrytí/odkrytí tlačítek po boji
+        private void AttacksButtons()
+        {
+            AttackButton.Visibility = System.Windows.Visibility.Hidden;
+            ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
+            FighterButton.Visibility = System.Windows.Visibility.Hidden;
+            RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
+            AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        //Metoda pro zobrazení životů, při boji
+        private void EnemiesLivesInfo()
+        {
+            player.EnemyLives = Math.Round((Double)player.EnemyLives, 2);
+            PlayerLives.Text = player.EnemyLives.ToString();
+            enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
+            EnemyLives.Text = enemy.EnemyLives.ToString();
+            GameInfo();
         }
 
         //---- DataBinding ---- 
@@ -403,7 +404,7 @@ namespace Draci_doupe
             InventoryID_List.ItemsSource = inventory.GetCollectionID();
             Market_List.ItemsSource = market.MarketItemName;
             Market_Price_List.ItemsSource = market.MarketItemPrice;
-            LevelUp(person.Experience, person.Level, levels.Maximum);
+            ControlLevelUp(person.Experience, person.Level, levels.Maximum);
             lives = new LivesProgressBar(person.Lives, person.Level);
             LivesProgressbar.DataContext = lives;
             levels = new LevelProgressBar(person.Experience, person.Level);
@@ -424,6 +425,5 @@ namespace Draci_doupe
             AttackPopUp.IsOpen = false;
             Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
         }
-
     }
 }

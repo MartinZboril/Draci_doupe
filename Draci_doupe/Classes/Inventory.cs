@@ -57,20 +57,5 @@ namespace Draci_doupe
         {
             return itemid;
         }
-        /// <summary>
-        /// Metoda, pro odstranění věci z inventáři, když je věc použitá
-        /// </summary>
-        /// <param name="id">ID věci</param>
-        public void ItemUse(int id)
-        {
-            /*for (int i = 0; i < itemid.Count; i++)
-            {
-                if (id == itemid[i])
-                {
-                    itemname[i] = "ahok";
-                    itemid.RemoveAt(i);
-                }
-            }*/
-        }
     }
 }

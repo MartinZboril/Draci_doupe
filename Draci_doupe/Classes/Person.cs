@@ -153,5 +153,12 @@ namespace Draci_doupe
             }
             return text;
         }
+        
+        public void LevelUp()
+        {
+            _experience = 0;
+            _level += 1;
+            _attack += 10;
+        }
     }
 }

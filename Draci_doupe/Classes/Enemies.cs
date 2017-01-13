@@ -13,6 +13,7 @@ namespace Draci_doupe.Classes
         List<int> Enemy_Lives = new List<int>();
         List<int> Enemy_AttackStrength = new List<int>();
         List<int> Enemy_Defense = new List<int>();
+        List<int> Enemy_Experience = new List<int>();
 
         public Enemies()
         {
@@ -35,6 +36,10 @@ namespace Draci_doupe.Classes
             Enemy_Defense.Add(5);
             Enemy_Defense.Add(1);
             Enemy_Defense.Add(8);
+
+            Enemy_Experience.Add(50);
+            Enemy_Experience.Add(100);
+            Enemy_Experience.Add(50);
         }
         /// <summary>
         /// Metoda pro získání jména nepřítele z kolekce
@@ -75,6 +80,16 @@ namespace Draci_doupe.Classes
         {
             int defense = Enemy_Defense[num];
             return defense;
+        }
+        /// <summary>
+        /// Metoda pro získání zkušeností za poražení nepřítele
+        /// </summary>
+        /// <param name="num">ID nepřítele</param>
+        /// <returns>Nepřítelova zkušenost za poražení</returns>
+        public int GetEnemyExperience(int num)
+        {
+            int experience = Enemy_Experience[num];
+            return experience;
         }
     }
 }
