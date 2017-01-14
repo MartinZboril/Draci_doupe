@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Draci_doupe.Classes;
+using Draci_doupe.Interface;
 
 namespace Draci_doupe
 {
-    public class Enemy
+    public class Enemy : IPerson
     {
         Enemies enemies = new Enemies();
         //List<int> n = 0;
@@ -34,31 +35,31 @@ namespace Draci_doupe
             _enemyexperience = enemies.GetEnemyExperience(n);
         }
         private int _enemyid;
-        public int EnemyId
+        public int ID
         {
             get { return _enemyid; }
             set { _enemyid = value; }
         }
         private string _enemyname;
-        public string EnemyName
+        public string Name
         {
             get { return _enemyname; }
             set { _enemyname = value; }
         }
         private double _enemylives;
-        public double EnemyLives
+        public double Lives
         {
             get { return _enemylives; }
             set { _enemylives = value; }
         }
         private int _enemyattackstrength;
-        public int EnemyAttackStrength
+        public int Attack
         {
             get { return _enemyattackstrength; }
             set { _enemyattackstrength = value; }
         }
         private double _enemydefense;
-        public double EnemyDefense
+        public double Defense
         {
             get { return _enemydefense; }
             set { _enemydefense = value; }

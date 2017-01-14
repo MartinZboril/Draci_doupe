@@ -79,55 +79,56 @@ namespace Draci_doupe.Classes
             Task_ID.Add(43);
             Task_ID.Add(44);
             //--------------------------------
+            //1
             Task_Title.Add("Vyber hrdinu");
             Task_Title.Add("Vzít/nevzít");
             Task_Title.Add("Vzít/nevzít");
             Task_Title.Add("Zahájit cestu");
-
+            //2
             Task_Title.Add("Bojovat/nebojovat");
             Task_Title.Add("Vem si to");
             Task_Title.Add("Odpočinek Ano/Ne");
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Bojovat/nebojovat");
             Task_Title.Add("Odměna");
-
+            //3
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Návštěva");
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Boj");
             Task_Title.Add("Sestup do údolí");
-
+            //4
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Vem si to");
             Task_Title.Add("Seznámit Ano/Ne");
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Nalodit");
-
+            //5
             Task_Title.Add("Boj");
             Task_Title.Add("Odměna");
             Task_Title.Add("Pokračovat");
-
+            //6
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Odpočinek");
             Task_Title.Add("Boj");
             Task_Title.Add("Pokračovat");
-
+            //7
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Pomoc Ano/Ne");
             Task_Title.Add("Odměna");
             Task_Title.Add("Boj");
             Task_Title.Add("Pokračovat");
-
+            //8
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Jdi dál");
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Boj");
             Task_Title.Add("Finální souboj");
             Task_Title.Add("Pokračovat");
-
-            Task_Title.Add("Výhra");
-            Task_Title.Add("Konec");
+            //9
+            Task_Title.Add("Pokračovat");
             //--------------------------------
+
             Task_Type.Add("vyber_hrdiny");
             Task_Type.Add("vyber");
             Task_Type.Add("vyber");
@@ -136,19 +137,19 @@ namespace Draci_doupe.Classes
             Task_Type.Add("boj");
             Task_Type.Add("odmena");
             Task_Type.Add("hospoda");
-            Task_Type.Add("nakup");
+            Task_Type.Add("pokracovat");
             Task_Type.Add("boj");
             Task_Type.Add("odmena");
 
             Task_Type.Add("pokracovat");
             Task_Type.Add("hospoda");
-            Task_Type.Add("nakup");
+            Task_Type.Add("pokracovat");
             Task_Type.Add("velitel");
             Task_Type.Add("pokracovat");
 
             Task_Type.Add("pokracovat");
             Task_Type.Add("odmena");
-            Task_Type.Add("nakup");
+            Task_Type.Add("hospoda");
             Task_Type.Add("pokracovat");
             Task_Type.Add("pokracovat");
 
@@ -157,7 +158,7 @@ namespace Draci_doupe.Classes
             Task_Type.Add("pokracovat");
 
             Task_Type.Add("pokracovat");
-            Task_Type.Add("pokracovat");
+            Task_Type.Add("hospoda");
             Task_Type.Add("boj");
             Task_Type.Add("pokracovat");
 
@@ -169,11 +170,11 @@ namespace Draci_doupe.Classes
 
             Task_Type.Add("velitel");
             Task_Type.Add("pokracovat");
+            Task_Type.Add("pokracovat");
+            Task_Type.Add("velitel");
+            Task_Type.Add("velitel");
             Task_Type.Add("pokračovat");
-            Task_Type.Add("velitel");
-            Task_Type.Add("velitel");
 
-            Task_Type.Add("pokracovat");
             Task_Type.Add("konec");
             //--------------------------------
             Task_Text.Add("Šermíř,Lučištník,Léčitel");
@@ -223,7 +224,6 @@ namespace Draci_doupe.Classes
             Task_Text.Add("Ano");
 
             Task_Text.Add("Ano");
-            Task_Text.Add("Ano");
             //--------------------------------
             Task_Reward.Add(0);
             Task_Reward.Add(2);
@@ -244,23 +244,23 @@ namespace Draci_doupe.Classes
             Task_Reward.Add(8);
 
             Task_Reward.Add(0);
-            Task_Reward.Add(11);
-            Task_Reward.Add(0);
-            Task_Reward.Add(0);
-            Task_Reward.Add(0);
-
-            Task_Reward.Add(0);
             Task_Reward.Add(12);
             Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
 
-            Task_Reward.Add(0);
-            Task_Reward.Add(0);
             Task_Reward.Add(0);
             Task_Reward.Add(13);
+            Task_Reward.Add(0);
 
+            Task_Reward.Add(0);
             Task_Reward.Add(0);
             Task_Reward.Add(0);
             Task_Reward.Add(14);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(15);
             Task_Reward.Add(0);
             Task_Reward.Add(0);
 
@@ -271,7 +271,6 @@ namespace Draci_doupe.Classes
             Task_Reward.Add(0);
             Task_Reward.Add(0);
 
-            Task_Reward.Add(0);
             Task_Reward.Add(0);
         }
         /// <summary>

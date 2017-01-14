@@ -15,15 +15,15 @@ namespace Draci_doupe.Attack
         /// <param name="attackStrenght">Síla útoku</param>
         public void Attack(Enemy enemy, int attackStrenght)
         {
-            if (((attackStrenght * 5) - enemy.EnemyDefense) > 0)
+            if (((attackStrenght * 5) - enemy.Defense) > 0)
             {
                 double LivesMinus = attackStrenght * 5;
-                enemy.EnemyLives -= LivesMinus;
+                enemy.Lives -= LivesMinus;
             }
             else
             {
                 double LivesMinus = attackStrenght / 2;
-                enemy.EnemyLives -= LivesMinus;
+                enemy.Lives -= LivesMinus;
             }
         }
     }

@@ -87,7 +87,7 @@ namespace Draci_doupe.Classes
             Chapter_Title.Add("Pomoc");
             Chapter_Title.Add("Odměna");
             Chapter_Title.Add("Rozhodnutí");
-            Chapter_Title.Add("Hospoda");
+            Chapter_Title.Add("Občerstvení");
             Chapter_Title.Add("Na cestě");
             Chapter_Title.Add("U hor");
             //---- 3. kapitola
@@ -101,7 +101,7 @@ namespace Draci_doupe.Classes
             Chapter_Title.Add("Překročení hor");
             Chapter_Title.Add("Pytel s potravinami");
             Chapter_Title.Add("Vesnice v údolí");
-            Chapter_Title.Add("Nákup");
+            Chapter_Title.Add("Domorodci");
             Chapter_Title.Add("Možnost cestovat lodí");
             //---- 5. kapitola ----
             Chapter_Title.Add("Na moři");
@@ -116,39 +116,38 @@ namespace Draci_doupe.Classes
             Chapter_Title.Add("Pochod na Egypt");
             Chapter_Title.Add("Zkrotit slona");
             Chapter_Title.Add("Odměna");
-            Chapter_Title.Add("První velitel");
+            Chapter_Title.Add("Klíčník");
             Chapter_Title.Add("Klíč");
             //---- 8. kapitola ----
-            Chapter_Title.Add("Boj");
             Chapter_Title.Add("Velitel armády");
+            Chapter_Title.Add("Postupuješ");
             Chapter_Title.Add("Další poschodí");
-            Chapter_Title.Add("Velitel města");
-            Chapter_Title.Add("Další poschodí");
-            Chapter_Title.Add("Faraón");
-            //---- 9. kapitola
+            Chapter_Title.Add("Skoro u konce");
+            Chapter_Title.Add("Hodně štěstí");
             Chapter_Title.Add("Výhra");
+            //---- 9. kapitola
             Chapter_Title.Add("Konec");
 
-            Chapter_Text.Add("Vítám tě ve hře. Včera nás přepadli zlý bojovnící, sebrali nám skoro vše. To nejdůležitější je, že vza-li kámen, který pohánní náš strom. Je tedy na tobě, aby si ho získal zpět. Budeš muset jít, až do Starověkého Egypta. Cesta bude nebezpečná, proto si vem sebou 2 společníky.");
-            Chapter_Text.Add("Po výběr si se podíval před sebe a uviděl jsi štít. Cheš ho nebo ne? Rozhodni a můžeme pokračovat.");
-            Chapter_Text.Add("Ještě než si vyšel zastavil tě tvůj kamarád a nabízí ti kamínky, za které si můžeš v budoucnu něco koupit. Vem si je budou se hodit");
+            Chapter_Text.Add("Vítám tě ve hře. Včera nás přepadli zlý bojovnící, sebrali nám skoro vše. To nejdůležitější je, že vza-li kámen, který pohánní náš strom života. Je tedy na tobě, aby si ho získal zpět. Budeš muset jít, až do země, které se říká svět Chrámů. Cesta bude nebezpečná, proto si vem sebou 2 společníky. Šermíř ti přidá do hry 50 bodů obrany, lučištník ti útok znásobí 5x, ovšem hráč na tebe zaútočí 2x. Léčitel ti po bitvě přidá 1/4 tvých životů.");
+            Chapter_Text.Add("Po výběru ti vůdce tvé vesnice nabídnul štít. Cheš ho nebo ne? Rozhodni se a můžeme pokračovat.");
+            Chapter_Text.Add("Ještě než si vyšel zastavil tě tvůj kamarád a nabízí ti kamínky, za které si můžeš v budoucnu něco koupit. Vem si je budou se hodit.");
             Chapter_Text.Add("Teď, když máš základní výbavu můžeme se vydat na výpravu.");
 
             Chapter_Text.Add("Tak to je nemilé, hned co jsi vyrazil, narazil jsi na přepadení karavany. Můžeš se vyhnout nebo bojovat. Pokud se vyhneš cesta bude pokračovat. Pokud budeš chtít bojovat, ztratíš sice životy, ale můžeš dostat odměnu. Je to jen na tobě.");
             Chapter_Text.Add("Odměna pro tebe");
-            Chapter_Text.Add("Ušel jsi už poměrně dlouhou cestu. Jestli chceš můžeme si odpočinout v hospodě, která je nedaleko odsuď, neboť další cesta bude náročná. Obsahuje spoustu nebezpečí.");
-            Chapter_Text.Add("Vítám tě u nás. Můžeš si vybrat následující zboží");
-            Chapter_Text.Add("To není dobré, potkal nás medvěd. Můžeš bojovat,sice utrpíš nějaké ztráty, ale dostaneš odměnu nebo se můžeš vyhnout");
+            Chapter_Text.Add("Ušel jsi už poměrně dlouhou cestu. Jestli chceš můžeme si odpočinout v támhle v posezení u druida, které je nedaleko odsuď, neboť další cesta bude náročná. Obsahuje spoustu nebezpečí.");
+            Chapter_Text.Add("Doufám, že jsi si nakoupil, jak si chtěl. Na cestě nás můžou potkat jěště další možnosti pro nákup.");
+            Chapter_Text.Add("To není dobré, potkal nás medvěd. Můžeš bojovat, sice utrpíš nějaké ztráty, ale dostaneš odměnu nebo se můžeš vyhnout.");
             Chapter_Text.Add("Dostal jsi kůži. Nyní se nacházíš u hor. Stiskni pokračovat");
 
             Chapter_Text.Add("Začal si výšlap přes hory. Cesta bude poměrně náročná, proto by jsi měl být pozorný.");
             Chapter_Text.Add("Seš v půlce cesty. Můžeš se zastavit u jeskenních lidí na nákup zboží. Jeskynní lidé mají tzv. kouzelné náhrdelníky, které přidávají zajímavé bonusy a za dobrou cenu.");
-            Chapter_Text.Add("Jeskynní lidé tě vítají. Klikni na nabídku obchod až budeš mít vybráno, dej zavřít.");
+            Chapter_Text.Add("Jeskynní lidé ti děkují za nákup a přejí ti hodně štestí do budoucna.");
             Chapter_Text.Add("Stoupáš dál a dál, najednou uvidíš na vrcholu světlo. Jsou to strážci hor musíš proti nim bojovat.");
-            Chapter_Text.Add("A vyhrál jsi dostaneš tento meč, který jsi našel u velitele. Lepší věc je, že jsi se dozvěděl kudy a kdy šli bojovníci co napadli naši vesnici. Prošli tudy před 2 dny a mají namířeno do údolí a odsuď do světa chrámů.");
+            Chapter_Text.Add("A vyhrál jsi dostaneš tento meč, který jsi našel u velitele. Lepší věc je, že jsi se dozvěděl kudy a kdy šli bojovníci co napadli naši vesnici. Prošli tudy před 2 dny a mají namířeno do údolí a odsuď do světa Chrámů.");
 
             Chapter_Text.Add("Úspěšně jsi překročil horu, nyní půjdeš dál a dál. Dávej si bacha tyto končiny, už moc neznáš...");
-            Chapter_Text.Add("Štestí je k tobě nakloněnené, našel pytel s jídlem. Vem si budeš ho potřebovat");
+            Chapter_Text.Add("Štestí je k tobě nakloněné, našel jsi pytel s jídlem. Vem si ho jídlo budeš potřebovat.");
             Chapter_Text.Add("Nalezl jsi vesnici domorodců, můžeš se jít představit, ale je to na tobě, nevíš co jsou zač. Ovšem něco nakoupit by jsi potřeboval.");
             Chapter_Text.Add("Domorodci se ti představili jsou přátelští a řekli ti, že tam kam máš namířeno se jmenuje Egypt.");
             Chapter_Text.Add("Našel jsi přístav, odtuď se nalodíš a pojedeš přes moře do Egypta.");
@@ -159,7 +158,7 @@ namespace Draci_doupe.Classes
 
             Chapter_Text.Add("Vyšlo Slunce a my jsme v Egyptě, zde už jde naše cesta do finále. Zde se rozhodne o osudu tvého národa.");
             Chapter_Text.Add("Hned co jsi se vylodil jsi našel vesnici, lidi jsou zde přátelští a můžou mít skvělé věci na prodej a bude to poslední zastávka či-li povinná, před hlavním boje. Jdi tam.");
-            Chapter_Text.Add("Výborně, nakoupil jsi si a můžeme se dát do boje, teď si zdřímneme. Počkat co je to támhle? To jsou poslové zla musíme bojovat.");
+            Chapter_Text.Add("Výborně, nakoupil jsi a můžeme se dát do boje, teď si zdřímneme. Počkat co je to támhle? To jsou poslové zla musíme bojovat.");
             Chapter_Text.Add("Vyhrál jsi a získal meč kapitána, kteří nás napadli, ovšem nepřátelé vědi, že jsi tady. To nám ubírá moment překvapení. Našteští jsi ohromil místní domorodce a ty ti přislíbili pomoc.");
 
             Chapter_Text.Add("Pochoduješ na Egypt, pro získání svého dědictví.");
@@ -175,8 +174,7 @@ namespace Draci_doupe.Classes
             Chapter_Text.Add("Vyhrál jsi a nyní tě čeká to nejtěžší tvé cesty. Další nepřítel je totiž faraón. Do něj!");
             Chapter_Text.Add("Porazil jsi faraóna, gratuluji ti k výhře v této hře. Získal jsi od faraóna tvé dědictví tvojí vesnice.");
 
-            Chapter_Text.Add("A nejen ty jsi vyhrál, město obsadili i domorodci a svrhli krutou vládu, která tu panovala. Tvoji lidé tu budou vždy vítání.");
-            Chapter_Text.Add("Toto je konec tvého příběhu.");
+            Chapter_Text.Add("A nejen ty jsi vyhrál, město obsadili i domorodci a svrhli krutou vládu, která tu panovala. Tvoji lidé tu budou vždy vítání. Toto je konec tvého příběhu.");
         }
         /// <summary>
         /// Metoda pro získání názvu kapitoly

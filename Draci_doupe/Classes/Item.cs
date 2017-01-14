@@ -58,7 +58,7 @@ namespace Draci_doupe
             Item_Name.Add("Náhrdelník obrany +10 obrany");
             Item_Name.Add("Štít +20 obrany");
             Item_Name.Add("Pytel s jídlem +45 životů");
-            Item_Name.Add("Kapitánů kloubouk +15 obrany");
+            Item_Name.Add("Kapitánův kloubouk +15 obrany");
             Item_Name.Add("Meč zlého bojovníka +25 síly útoku");
             Item_Name.Add("Štít ze slonoviny +10 obrany");
             Item_Name.Add("Chrániče nohou +10 obrany");

@@ -39,49 +39,49 @@ namespace Draci_doupe.Classes
             Enemy_Name.Add("Velitel města");
             Enemy_Name.Add("Faraón");
 
-            Enemy_Lives.Add(100);
             Enemy_Lives.Add(50);
-            Enemy_Lives.Add(180);
-            Enemy_Lives.Add(250);
-            Enemy_Lives.Add(320);
+            Enemy_Lives.Add(60);
+            Enemy_Lives.Add(80);
+            Enemy_Lives.Add(90);
             Enemy_Lives.Add(120);
-            Enemy_Lives.Add(400);
-            Enemy_Lives.Add(300);
-            Enemy_Lives.Add(600);
-            Enemy_Lives.Add(800);
+            Enemy_Lives.Add(55);
+            Enemy_Lives.Add(70);
+            Enemy_Lives.Add(80);
+            Enemy_Lives.Add(100);
+            Enemy_Lives.Add(125);
 
             Enemy_AttackStrength.Add(30);
-            Enemy_AttackStrength.Add(65);
-            Enemy_AttackStrength.Add(80);
-            Enemy_AttackStrength.Add(180);
-            Enemy_AttackStrength.Add(120);
-            Enemy_AttackStrength.Add(200);
-            Enemy_AttackStrength.Add(230);
-            Enemy_AttackStrength.Add(280);
-            Enemy_AttackStrength.Add(300);
-            Enemy_AttackStrength.Add(300);
+            Enemy_AttackStrength.Add(40);
+            Enemy_AttackStrength.Add(45);
+            Enemy_AttackStrength.Add(25);
+            Enemy_AttackStrength.Add(35);
+            Enemy_AttackStrength.Add(20);
+            Enemy_AttackStrength.Add(50);
+            Enemy_AttackStrength.Add(50);
+            Enemy_AttackStrength.Add(10);
+            Enemy_AttackStrength.Add(10);
 
             Enemy_Defense.Add(20);
             Enemy_Defense.Add(20);
-            Enemy_Defense.Add(30);
+            Enemy_Defense.Add(40);
+            Enemy_Defense.Add(45);
             Enemy_Defense.Add(60);
-            Enemy_Defense.Add(50);
             Enemy_Defense.Add(70);
-            Enemy_Defense.Add(75);
+            Enemy_Defense.Add(70);
+            Enemy_Defense.Add(60);
             Enemy_Defense.Add(80);
-            Enemy_Defense.Add(110);
-            Enemy_Defense.Add(130);
+            Enemy_Defense.Add(80);
 
             Enemy_Experience.Add(100);
             Enemy_Experience.Add(100);
-            Enemy_Experience.Add(150);
-            Enemy_Experience.Add(300);
-            Enemy_Experience.Add(400);
-            Enemy_Experience.Add(500);
-            Enemy_Experience.Add(600);
-            Enemy_Experience.Add(700);
-            Enemy_Experience.Add(800);
-            Enemy_Experience.Add(900);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
+            Enemy_Experience.Add(200);
         }
         /// <summary>
         /// Metoda pro získání jména nepřítele z kolekce
