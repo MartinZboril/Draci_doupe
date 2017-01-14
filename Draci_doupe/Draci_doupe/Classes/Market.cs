@@ -22,7 +22,8 @@ namespace Draci_doupe.Classes
         public Market(int num)
         {
             Market_type.Add("Hospoda");
-            Market_type.Add("Obchod");
+            Market_type.Add("Jeskynní lidé");
+            Market_type.Add("Domorodci za horami");
 
             _markettype = Market_type[num];
         }
@@ -52,17 +53,43 @@ namespace Draci_doupe.Classes
         /// <param name="Name">Kolekce názvu věcí</param>
         /// <param name="Type">Kolekce typu věcí</param>
         /// <param name="Price">Kolekce cen věcí</param>
-        public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price)
+        public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price, string MarketType)
         {
-            IMarketBehavior marketBehavior = new PubMarketBehavior();
-            marketBehavior.MarketItems(Id, Name, Type, Price);
-            List<int> MarketItemId = marketBehavior.GetID();
-            List<string> MarketItemName = marketBehavior.GetName();
-            List<int> MarketItemPrice = marketBehavior.GetPrice();
-
-            for (int i = 0; i < MarketItemId.Count; i++)
+            if (MarketType.Equals("Hospoda"))
             {
-                AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
+                IMarketBehavior marketBehavior = new PubMarketBehavior();
+                marketBehavior.MarketItems(Id, Name, Type, Price);
+                List<int> MarketItemId = marketBehavior.GetID();
+                List<string> MarketItemName = marketBehavior.GetName();
+                List<int> MarketItemPrice = marketBehavior.GetPrice();
+                for (int i = 0; i < MarketItemId.Count; i++)
+                {
+                    AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
+                }
+            }
+            else if(MarketType.Equals("Jeskynní lidé"))
+            {
+                IMarketBehavior marketBehavior = new CavePeopleShop();
+                marketBehavior.MarketItems(Id, Name, Type, Price);
+                List<int> MarketItemId = marketBehavior.GetID();
+                List<string> MarketItemName = marketBehavior.GetName();
+                List<int> MarketItemPrice = marketBehavior.GetPrice();
+                for (int i = 0; i < MarketItemId.Count; i++)
+                {
+                    AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
+                }
+            }
+            else if (MarketType.Equals("Domorodci za horami"))
+            {
+                IMarketBehavior marketBehavior = new AboriginesShopBehavior();
+                marketBehavior.MarketItems(Id, Name, Type, Price);
+                List<int> MarketItemId = marketBehavior.GetID();
+                List<string> MarketItemName = marketBehavior.GetName();
+                List<int> MarketItemPrice = marketBehavior.GetPrice();
+                for (int i = 0; i < MarketItemId.Count; i++)
+                {
+                    AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
+                }
             }
         }
     }

@@ -10,7 +10,7 @@
 
     <Grid>
 
-        <Frame x:Name="_gamePageFrame" Margin="0,0,0,100"></Frame>
+        <Frame x:Name="_gamePageFrame" NavigationUIVisibility="Hidden"/>
 
 
         <Grid>
@@ -49,27 +49,7 @@
                 <Button x:Name="InventoryButton" Content="Inventar" Click="InventoryButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
                 <Button x:Name="MarketButton" Content="Obchod" Visibility="Hidden" Click="MarketButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
                 <Button x:Name="ProfileButton" Content="Profil" Click="ProfileButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4"/>
-                <Button x:Name="HelperButton" Content="Pomocnici" Click="HelperButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="266,10,570,55"/>
-                <Button x:Name="HintButton" Content="Napoveda" Click="HintButton_Click" Background="White" Width="80" Height="35" Margin="800,10,45,55"/>
             </Grid>
-
-            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="HelperPopUp" Width="909" Height="400" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="300"></RowDefinition>
-                        <RowDefinition Height="100"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Pomocnici</TextBlock>
-                    <TextBlock x:Name="Helper" Grid.Column="0" Margin="42,53,48,39" FontSize="22"></TextBlock>
-                    <TextBlock x:Name="Helper1" Grid.Column="1" Margin="42,53,48,39" FontSize="22"></TextBlock>
-                    <Button x:Name="HelperPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="HelperPopUpClose_Click"></Button>
-                </Grid>
-            </Popup>
 
             <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="InventoryPopUp" Width="909" Height="400" PopupAnimation="Slide" >
                 <Grid Background="#FFF1F1F1">
@@ -83,7 +63,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Inventar</TextBlock>
-                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
+                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -96,7 +76,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <CheckBox x:Name="Checkbox_ItemUse" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" Tag="{Binding}"/>
+                                    <CheckBox x:Name="Checkbox_ItemUse" Tag="{Binding}" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -117,12 +97,23 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Profil hráče</TextBlock>
-                    <TextBlock x:Name="Name" Grid.Column="0" Margin="31,73,42,182"></TextBlock>
-                    <TextBlock x:Name="Level" Grid.Column="0" Margin="31,138,42,117"></TextBlock>
-                    <ProgressBar x:Name="LivesProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="31,230,42,52" />
-                    <ProgressBar x:Name="LevelsProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="31,272,42,10" />
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Hráč:" Grid.Column="0" Margin="31,73,354,197" FontSize="24" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <TextBlock x:Name="Name" Grid.Column="0" Margin="100,73,42,197" FontSize="24"></TextBlock>
+                    <TextBlock Text="Level:" Grid.Column="0" Margin="31,112,354,156" FontSize="24" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Level" Grid.Column="0" Margin="105,112,58,156" FontSize="24"></TextBlock>
+                    <TextBlock Text="Pomocníci:" Grid.Column="0" Margin="31,149,300,119" FontSize="24" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="HelpersInfo" Grid.Column="0" Margin="159,149,63,119" FontSize="24" Text="{Binding GetHelpers}"></TextBlock>
+                    <TextBlock Text="Další level:" Grid.Column="0" Margin="31,270,354,10" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="0" Margin="31,230,375,50" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <ProgressBar x:Name="LivesProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="84,230,37,50" />
+                    <ProgressBar x:Name="LevelsProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="105,270,16,10" />
                     <Button x:Name="ProfilePopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="ProfilePopUpClose_Click"></Button>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Útok:" FontSize="24" FontWeight="Bold" Margin="42,73,344,200" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="attack" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="116,73,219,200" RenderTransformOrigin="0.475,0.537"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Obrana:" FontSize="24" FontWeight="Bold" Margin="42,112,317,161" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="defense" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="143,112,192,161" RenderTransformOrigin="0.5,0.537"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Zkušenosti:" FontSize="24" FontWeight="Bold" Margin="42,149,279,124" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="experienceinfo" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="181,149,154,124" RenderTransformOrigin="0.508,0.611"/>
                 </Grid>
             </Popup>
 
@@ -138,15 +129,28 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Utok</TextBlock>
-                    <TextBlock x:Name="Player" Grid.Column="0"  FontSize="22"  VerticalAlignment="Center" Margin="42,69,62,281" Height="50"></TextBlock>
-                    <TextBlock x:Name="Enemy" Grid.Column="1" Margin="42,69,63,281" FontSize="22" VerticalAlignment="Center" Height="50"></TextBlock>
-                    <TextBlock x:Name="PlayerLives" Grid.Column="0" FontSize="22" Margin="70,138,214,212"></TextBlock>
-                    <TextBlock x:Name="EnemyLives" Grid.Column="1" FontSize="22" Margin="42,138,243,212"></TextBlock>
-                    <TextBlock x:Name="Result" Grid.Column="1" Grid.Row="1" FontSize="22" Margin="69,0,0,0"></TextBlock>
+                    <TextBlock Text="Jméno:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Player" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="129,69,50,302" Height="29"></TextBlock>
+                    <TextBlock Text="Jméno:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="Enemy" Grid.Column="1" Margin="130,69,63,302" FontSize="24" VerticalAlignment="Center" Height="29"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerLives" Grid.Column="0" FontSize="24" Margin="129,109,155,262"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyLives" Grid.Column="1" FontSize="24" Margin="125,109,160,262"></TextBlock>
+                    <TextBlock x:Name="Result" TextAlignment="Center"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" Margin="275,356,275,10" FontWeight="Bold" Grid.ColumnSpan="2" Height="34"/>
+                    <TextBlock Text="Útok:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,347,162" Height="32" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyAttackBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="113,209,172,162"></TextBlock>
+                    <TextBlock Text="Obrana:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,312,117" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="EnemyDefenseBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="138,238,147,133"></TextBlock>
+                    <TextBlock Text="Útok:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,344,162" Height="32" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerAttackBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="113,209,172,162"></TextBlock>
+                    <TextBlock Text="Obrana:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,317,117" Height="45" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerDefenseBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="138,238,147,133"></TextBlock>
                     <Button x:Name="AttackPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="AttackPopUpClose_Click" Visibility="Hidden"></Button>
-                    <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Utok" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
-                    <Button x:Name="FighterButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Šermíř" Click="FigtherButton_Click" Visibility="Hidden" Margin="178,25,176,25"></Button>
-                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="304,25,50,25"></Button>
+                    <Button x:Name="GameEndButton" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Konec" Click="GameEndButton_Click" Visibility="Hidden"></Button>
+                    <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Začít" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
+                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="182,25,172,25" RenderTransformOrigin="0.23,0.36"></Button>
+                    <Button x:Name="RandomAttackButton" Grid.Row="1" Height="50" Width="100" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="326,25,28,25"/>
                 </Grid>
             </Popup>
 

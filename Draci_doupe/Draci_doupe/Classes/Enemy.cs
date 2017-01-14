@@ -11,6 +11,7 @@ namespace Draci_doupe
     public class Enemy
     {
         Enemies enemies = new Enemies();
+        //List<int> n = 0;
         public Enemy()
         {
 
@@ -30,6 +31,7 @@ namespace Draci_doupe
             _enemylives = enemies.GetEnemyLives(n);
             _enemyattackstrength = enemies.GetEnemyAttackStrength(n);
             _enemydefense = enemies.GetEnemyDefense(n);
+            _enemyexperience = enemies.GetEnemyExperience(n);
         }
         private int _enemyid;
         public int EnemyId
@@ -61,6 +63,12 @@ namespace Draci_doupe
             get { return _enemydefense; }
             set { _enemydefense = value; }
         }
+        private int _enemyexperience;
+        public int EnemyExperience
+        {
+            get { return _enemyexperience; }
+            set { _enemyexperience = value; }
+        }
         /// <summary>
         /// Útok nepřítele, klasický
         /// </summary>
@@ -70,17 +78,6 @@ namespace Draci_doupe
         {
             int _attackStrenght = attack;
             IAttackBehavior attackBehavior = new BasicAttackBehavior();
-            attackBehavior.Attack(enemy, _attackStrenght);
-        }
-        /// <summary>
-        /// Útok nepřítele, jako šermíř
-        /// </summary>
-        /// <param name="enemy">Nepřítel na kterého se útočí</param>
-        /// <param name="attack">Síla útoku</param>
-        public void FighterAttackEnemy(Enemy enemy, int attack)
-        {
-            int _attackStrenght = attack;
-            IAttackBehavior attackBehavior = new FighterAttackBehavior();
             attackBehavior.Attack(enemy, _attackStrenght);
         }
         /// <summary>

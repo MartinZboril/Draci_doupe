@@ -56,9 +56,10 @@
     </ApplicationDefinition>
     <Compile Include="Attack\ArcherAttackBehavior.cs" />
     <Compile Include="Attack\BasicAttackBehavior.cs" />
-    <Compile Include="Attack\FighterAttackBehavior.cs" />
+    <Compile Include="Attack\DiceAttackBehavior.cs" />
     <Compile Include="Classes\Bank.cs" />
     <Compile Include="Classes\Chapters.cs" />
+    <Compile Include="Classes\Dice.cs" />
     <Compile Include="Classes\Enemies.cs" />
     <Compile Include="Classes\Enemy.cs" />
     <Compile Include="Classes\Market.cs" />
@@ -71,6 +72,9 @@
     <Compile Include="Interface\IProgressBarValue.cs" />
     <Compile Include="ProgressBar\LevelProgressBar.cs" />
     <Compile Include="ProgressBar\LivesProgressBar.cs" />
+    <Compile Include="Shop\AboriginesShopBehavior.cs" />
+    <Compile Include="Shop\CavePeopleShop.cs" />
+    <Compile Include="Shop\EgyptsShopBehavior.cs" />
     <Compile Include="Shop\PubMarketBehavior.cs" />
     <Page Include="Game.xaml">
       <SubType>Designer</SubType>

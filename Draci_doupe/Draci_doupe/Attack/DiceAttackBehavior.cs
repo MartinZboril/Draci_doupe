@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace Draci_doupe.Attack
 {
-    public class BasicAttackBehavior : IAttackBehavior
+    class DiceAttackBehavior : IAttackBehavior
     {
         /// <summary>
-        /// Metoda pro útok klasický 
+        /// Metoda pro útok speciální 
         /// </summary>
         /// <param name="enemy">Nepřítel</param>
         /// <param name="attackStrenght">Síla útoku</param>
         public void Attack(Enemy enemy, int attackStrenght)
         {
-            if ((attackStrenght - enemy.EnemyDefense) > 0)
+            if (((attackStrenght*10) - enemy.EnemyDefense) > 0)
             {
-                double LivesMinus = attackStrenght;
-                enemy.EnemyLives -= LivesMinus;
+                double LivesMinus = attackStrenght * 10;
+                enemy.EnemyLives -= Math.Abs(LivesMinus);
             }
             else
             {
-                double LivesMinus = attackStrenght/2;
+                double LivesMinus = attackStrenght / 2;
                 enemy.EnemyLives -= LivesMinus;
             }
         }
