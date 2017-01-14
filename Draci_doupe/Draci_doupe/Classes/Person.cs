@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Draci_doupe.Interface;
 
 namespace Draci_doupe
 {
-    class Person
+    class Person : IPerson
     {
         public Person()
         {
@@ -17,6 +18,11 @@ namespace Draci_doupe
             _helper = "Neni";
             _helper1 = "Neni";
             _lives = 190;
+        }
+        private int _id;
+        public int ID {
+            get { return _id; }
+            set { _id = value; }
         }
         private string _name;
         public string Name
@@ -66,6 +72,7 @@ namespace Draci_doupe
             get { return _experience; }
             set { _experience = value; }
         }
+        public string GetHelpers => Helper + ", " + Helper1;
         /// <summary>
         /// Metoda pro přidání pomocníka
         /// </summary>
@@ -81,10 +88,6 @@ namespace Draci_doupe
             {
                 _helper1 = hero;
             }
-            if(_helper.Equals("Šermíř") || _helper.Equals("Šermíř"))
-            {
-                _defense = 50;
-            }
             Result = "1/2";
             return Result;       
         }
@@ -95,21 +98,6 @@ namespace Draci_doupe
         public void AddExperience(int xp)
         {
             _experience += xp;
-        }
-        /// <summary>
-        /// Metoda pro zjištění zda-li je spolubojovník průzkumník
-        /// </summary>
-        /// <param name="helper">Pomocník</param>
-        /// <param name="helper1">Pomocník</param>
-        /// <returns>T nebo F</returns>
-        public bool Scout(string helper, string helper1)
-        {
-            bool scout = false;
-            if (helper.Equals("Průzkumník") || helper1.Equals("Průzkumník"))
-            {
-                scout = true;
-            }
-            return scout;
         }
         /// <summary>
         /// Metoda pro zjištění zda-li je spolubojovník léčitel
@@ -125,6 +113,14 @@ namespace Draci_doupe
                 healer = true;
             }
             return healer;
+        }
+
+        public void Fighter(string helper, string helper1)
+        {
+            if (helper.Equals("Šermíř") || helper1.Equals("Šermíř"))
+            {
+                _defense = 50;
+            }
         }
         /// <summary>
         /// Metoda pro zjištění zda-li spolubojovník je lučištník

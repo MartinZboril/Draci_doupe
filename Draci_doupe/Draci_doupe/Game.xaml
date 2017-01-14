@@ -47,7 +47,6 @@
             <!--Menu-->
             <Grid x:Name="MenuGrid" Background="#FFE8E8E8" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
                 <Button x:Name="InventoryButton" Content="Inventar" Click="InventoryButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
-                <Button x:Name="MarketButton" Content="Obchod" Visibility="Hidden" Click="MarketButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
                 <Button x:Name="ProfileButton" Content="Profil" Click="ProfileButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4"/>
             </Grid>
 
@@ -63,6 +62,8 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Inventar</TextBlock>
+                    <TextBlock Text="Položka" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="194,61,349,213" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <TextBlock Text="Použít" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="136,61,255,213"  FontWeight="Bold" RenderTransformOrigin="-0.133,0.5"/>
                     <ListView x:Name="Inventory_List" ItemsSource="{Binding}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -166,6 +167,8 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Market</TextBlock>
+                    <TextBlock Text="Položka" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="194,61,262,213" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <TextBlock Text="Cena" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="198,61,193,213"  FontWeight="Bold"/>
                     <ListView x:Name="Market_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,262,30">
                         <ListView.ItemTemplate>
                             <DataTemplate>

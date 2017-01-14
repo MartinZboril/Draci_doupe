@@ -69,6 +69,7 @@
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Task.cs" />
+    <Compile Include="Interface\IPerson.cs" />
     <Compile Include="Interface\IProgressBarValue.cs" />
     <Compile Include="ProgressBar\LevelProgressBar.cs" />
     <Compile Include="ProgressBar\LivesProgressBar.cs" />

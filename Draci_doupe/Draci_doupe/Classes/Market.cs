@@ -24,6 +24,7 @@ namespace Draci_doupe.Classes
             Market_type.Add("Hospoda");
             Market_type.Add("Jeskynní lidé");
             Market_type.Add("Domorodci za horami");
+            Market_type.Add("Egypt");
 
             _markettype = Market_type[num];
         }
@@ -82,6 +83,18 @@ namespace Draci_doupe.Classes
             else if (MarketType.Equals("Domorodci za horami"))
             {
                 IMarketBehavior marketBehavior = new AboriginesShopBehavior();
+                marketBehavior.MarketItems(Id, Name, Type, Price);
+                List<int> MarketItemId = marketBehavior.GetID();
+                List<string> MarketItemName = marketBehavior.GetName();
+                List<int> MarketItemPrice = marketBehavior.GetPrice();
+                for (int i = 0; i < MarketItemId.Count; i++)
+                {
+                    AddItemToMarket(MarketItemId[i], MarketItemName[i], MarketItemPrice[i]);
+                }
+            }
+            else if (MarketType.Equals("Egypt"))
+            {
+                IMarketBehavior marketBehavior = new EgyptsShopBehavior();
                 marketBehavior.MarketItems(Id, Name, Type, Price);
                 List<int> MarketItemId = marketBehavior.GetID();
                 List<string> MarketItemName = marketBehavior.GetName();
