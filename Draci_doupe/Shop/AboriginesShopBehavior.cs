@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Draci_doupe.Interface;
+using Draci_doupe.Classes;
 
 namespace Draci_doupe.Shop
 {
-    class CavePeopleShop : IMarketBehavior
+    class AboriginesShopBehavior : IMarketBehavior
     {
-        public CavePeopleShop()
+        public AboriginesShopBehavior()
         {
 
         }
-        public CavePeopleShop(int Id, string Name, string Type, int Price)
+        public AboriginesShopBehavior(int Id, string Name, string Type, int Price)
         {
             _itemid = Id;
             _itemname = Name;
@@ -53,11 +54,9 @@ namespace Draci_doupe.Shop
 
         public void MarketItems(List<int> Id, List<string> Name, List<string> Type, List<int> Price)
         {
-
-            //List<PubMarketBehavior> items = new List<PubMarketBehavior>();
             for (int i = 0; i < Id.Count; i++)
             {
-                if (Type[i].Equals("Jeskynní předměty"))
+                if (Type[i].Equals("Předměty domorodců"))
                 {
                     Item_ID.Add(Id[i]);
                     Item_Name.Add(Name[i]);

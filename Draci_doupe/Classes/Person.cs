@@ -16,7 +16,7 @@ namespace Draci_doupe
             _defense = 0;
             _helper = "Neni";
             _helper1 = "Neni";
-            _lives = 110;
+            _lives = 190;
         }
         private string _name;
         public string Name
@@ -66,7 +66,6 @@ namespace Draci_doupe
             get { return _experience; }
             set { _experience = value; }
         }
-        public string GetHelpers => Helper + ", " + Helper1;
         /// <summary>
         /// Metoda pro přidání pomocníka
         /// </summary>
@@ -77,10 +76,14 @@ namespace Draci_doupe
             string Result;
             if (_helper.Equals("Neni"))
             {
-                _helper = hero;               
+                _helper = hero;                              
             } else
             {
                 _helper1 = hero;
+            }
+            if(_helper.Equals("Šermíř") || _helper.Equals("Šermíř"))
+            {
+                _defense = 50;
             }
             Result = "1/2";
             return Result;       
@@ -124,21 +127,6 @@ namespace Draci_doupe
             return healer;
         }
         /// <summary>
-        /// Metoda pro zjištění zda-li spolubojovník je šermíř
-        /// </summary>
-        /// <param name="helper">Pomocník</param>
-        /// <param name="helper1">Pomocník</param>
-        /// <returns>Hodnotu zda-li skrýt nebo odkrýt tlačítko pro šermíře</returns>
-        public System.Windows.Visibility Fighter(string helper, string helper1)
-        {
-            System.Windows.Visibility text = System.Windows.Visibility.Hidden;
-            if (helper.Equals("Šermíř") || helper1.Equals("Šermíř"))
-            {
-                text = System.Windows.Visibility.Visible;
-            }
-            return text;
-        }
-        /// <summary>
         /// Metoda pro zjištění zda-li spolubojovník je lučištník
         /// </summary>
         /// <param name="helper">Pomocník</param>
@@ -153,12 +141,39 @@ namespace Draci_doupe
             }
             return text;
         }
-        
+        /// <summary>
+        /// Metoda pro zvýšení levelu
+        /// </summary>
         public void LevelUp()
         {
             _experience = 0;
             _level += 1;
             _attack += 10;
+        }
+        /// <summary>
+        /// Metoda pro použití předmětu
+        /// </summary>
+        /// <param name="BonusType">Typ bonusu</param>
+        /// <param name="Bonus">Hodnota bonusu</param>
+        /// <param name="Maximum">Maximum životů</param>
+        public void PersonItemUse(string BonusType, int Bonus, double Maximum)
+        {
+            if (BonusType.Equals("Životy"))
+            {
+                _lives += Bonus;
+                if (_lives > Maximum)
+                {
+                    _lives = _lives - (_lives - Maximum);
+                }
+            }
+            else if (BonusType.Equals("Útok"))
+            {
+                _attack += Bonus;
+            }
+            else if (BonusType.Equals("Obrana"))
+            {
+                _defense += Bonus;
+            }
         }
     }
 }

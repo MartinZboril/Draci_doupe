@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Draci_doupe
 {
@@ -36,8 +37,8 @@ namespace Draci_doupe
         {
             if (money >= price)
             {
-                itemid.Add(id);
-                itemname.Add(item);
+                    itemid.Add(id);
+                    itemname.Add(item);
             }
 
         }
@@ -56,6 +57,21 @@ namespace Draci_doupe
         public List<int> GetCollectionID()
         {
             return itemid;
+        }
+
+        public void Remove(int id)
+        {
+            string name = "";
+            for (int i = 0; i < itemid.Count(); i++)
+            {
+                if (id == itemid[i])
+                {
+                    name = itemname[i];
+                }
+            }
+
+            itemid.Remove(id);
+            itemname.Remove(name);
         }
     }
 }

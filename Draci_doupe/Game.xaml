@@ -49,27 +49,7 @@
                 <Button x:Name="InventoryButton" Content="Inventar" Click="InventoryButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
                 <Button x:Name="MarketButton" Content="Obchod" Visibility="Hidden" Click="MarketButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
                 <Button x:Name="ProfileButton" Content="Profil" Click="ProfileButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4"/>
-                <Button x:Name="HelperButton" Content="Pomocnici" Click="HelperButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="266,10,570,55"/>
-                <Button x:Name="HintButton" Content="Napoveda" Click="HintButton_Click" Background="White" Width="80" Height="35" Margin="800,10,45,55"/>
             </Grid>
-
-            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="HelperPopUp" Width="909" Height="400" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="300"></RowDefinition>
-                        <RowDefinition Height="100"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Pomocnici</TextBlock>
-                    <TextBlock x:Name="Helper" Grid.Column="0" Margin="42,53,48,39" FontSize="22"></TextBlock>
-                    <TextBlock x:Name="Helper1" Grid.Column="1" Margin="42,53,48,39" FontSize="22"></TextBlock>
-                    <Button x:Name="HelperPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="HelperPopUpClose_Click"></Button>
-                </Grid>
-            </Popup>
 
             <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="InventoryPopUp" Width="909" Height="400" PopupAnimation="Slide" >
                 <Grid Background="#FFF1F1F1">
@@ -83,7 +63,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Inventar</TextBlock>
-                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
+                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -96,7 +76,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <CheckBox x:Name="Checkbox_ItemUse" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" Tag="{Binding}"/>
+                                    <CheckBox x:Name="Checkbox_ItemUse" Tag="{Binding}" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -169,9 +149,8 @@
                     <Button x:Name="AttackPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="AttackPopUpClose_Click" Visibility="Hidden"></Button>
                     <Button x:Name="GameEndButton" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Konec" Click="GameEndButton_Click" Visibility="Hidden"></Button>
                     <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Začít" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
-                    <Button x:Name="FighterButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Šermíř" Click="FigtherButton_Click" Visibility="Hidden" Margin="178,25,176,25"></Button>
-                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="304,25,50,25"></Button>
-                    <Button x:Name="RandomAttackButton" Grid.Row="1" Height="50" Width="100" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="432,25,377,25" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="182,25,172,25" RenderTransformOrigin="0.23,0.36"></Button>
+                    <Button x:Name="RandomAttackButton" Grid.Row="1" Height="50" Width="100" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="326,25,28,25"/>
                 </Grid>
             </Popup>
 

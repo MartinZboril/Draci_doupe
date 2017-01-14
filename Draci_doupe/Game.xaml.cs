@@ -156,30 +156,11 @@ namespace Draci_doupe
             int num = int.Parse(chkZone.Tag.ToString());
             string ItemBonusType = item.GetItemBonusType(num);
             int ItemBonus = item.GetItemBonus(num);
-
-            if (chkZone.Content.Equals("Pouzit"))
-            {
-                if (ItemBonusType.Equals("Životy"))
-                {
-                    person.Lives += ItemBonus;
-                    if (person.Lives > LivesProgressbar.Maximum)
-                    {
-                        person.Lives = person.Lives - (person.Lives - LivesProgressbar.Maximum);
-                    }
-                }
-                else if (ItemBonusType.Equals("Útok"))
-                {
-                    person.Attack += ItemBonus;
-                }
-                else if (ItemBonusType.Equals("Obrana"))
-                {
-                    person.Defense += ItemBonus;
-                }
-            }
-            //inventory.ItemUse(num);
-            chkZone.Content = "Použito";
-            chkZone.Cursor = Cursors.No;
-            InventoryPopUp.IsOpen = false;
+            person.PersonItemUse(ItemBonusType, ItemBonus, LivesProgressbar.Maximum);
+            inventory.Remove(num);
+            Inventory_List.Items.Refresh();
+            InventoryID_List.Items.Refresh();
+            ItemSource();
         }
 
         //Metoda pro nákup zboží
@@ -190,6 +171,7 @@ namespace Draci_doupe
             money.Money -= item.GetItemPrice(chkZone.Content.ToString(), money.Money);
             inventory.AddItemMarket(Id, chkZone.Content.ToString(), money.Money, item.GetItemPrice(chkZone.Content.ToString(), money.Money));
             Money.Text = money.Money.ToString();
+            ItemSource();
         }
 
         //---- Útok ----
@@ -197,35 +179,27 @@ namespace Draci_doupe
         //Metoda pro útok na nepřítele, po stisknutí tlačítka
         private void AttackButton_Click(object sender, RoutedEventArgs e)
         {
-            AttackButton.Content = "Útok";           
-            FighterButton.Visibility = person.Fighter(person.Helper, person.Helper1);
+            AttackButton.Content = "Útok";
+            player.AttackEnemy(enemy, player.EnemyAttackStrength);
             ArcheryButton.Visibility = person.Archer(person.Helper, person.Helper1);
             RandomAttackButton.Visibility = System.Windows.Visibility.Visible;
             Player.Text = player.EnemyName;
             Enemy.Text = enemy.EnemyName;
-            player.AttackEnemy(enemy, player.EnemyAttackStrength);
-            enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
-            EnemiesLivesInfo();
-        }
-
-        //Metoda pro útok na nepřítele, šermířem, po stisknutí tlačítka
-        private void FigtherButton_Click(object sender, RoutedEventArgs e)
-        {
-            player.FighterAttackEnemy(enemy, player.EnemyAttackStrength);
             EnemiesLivesInfo();
         }
 
         //Metoda pro útok na nepřítele, lučištníkem, po stisknutí tlačítka
         private void ArcheryButton_Click(object sender, RoutedEventArgs e)
         {
+            
             player.ArcherAttackEnemy(enemy, player.EnemyAttackStrength);
+            enemy.AttackEnemy(player, (enemy.EnemyAttackStrength));
             EnemiesLivesInfo();
         }
 
         //Metoda pro útok na nepřítele, speciální útok, symbolizuje hrací kostku
         private void RandomAttackButton_Click(object sender, RoutedEventArgs e)
         {
-            enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
             dice.DiceAttackEnemy(enemy, player.EnemyAttackStrength);
             EnemiesLivesInfo();
         }
@@ -241,26 +215,6 @@ namespace Draci_doupe
         }
 
         //---- PopUp ---- 
-
-        //---- PopUp pro nápovědu ----
-        private void HintButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        //---- PopUp pro spolubojovníky ----
-        private void HelperButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            HelperPopUp.IsOpen = true;
-            Helper.Text = person.Helper;
-            Helper1.Text = person.Helper1;
-        }
-
-        private void HelperPopUpClose_Click(object sender, RoutedEventArgs e)
-        {
-            HelperPopUp.IsOpen = false;
-        }
 
         //---- PopUp pro profil ----
         private void ProfileButton_Click(object sender, RoutedEventArgs e)
@@ -287,6 +241,9 @@ namespace Draci_doupe
         //---- PopUp pro inventář ----
         private void InventoryButton_Click(object sender, RoutedEventArgs e)
         {
+            ItemSource();
+            Inventory_List.Items.Refresh();
+            InventoryID_List.Items.Refresh();
             InventoryPopUp.IsOpen = true;
         }
 
@@ -306,6 +263,7 @@ namespace Draci_doupe
         {
             MarketPopUp.IsOpen = true;
             Money.Text = money.Money.ToString();
+            ItemSource();
         }
 
         private void MarketPopUpClose_Click(object sender, RoutedEventArgs e)
@@ -313,8 +271,8 @@ namespace Draci_doupe
             MarketPopUp.IsOpen = false;
             InventoryButton.Visibility = System.Windows.Visibility.Visible;
             ProfileButton.Visibility = System.Windows.Visibility.Visible;
-            HelperButton.Visibility = System.Windows.Visibility.Visible;
             MarketButton.Visibility = System.Windows.Visibility.Hidden;
+            ItemSource();
         }
 
         //---- Design ----
@@ -328,11 +286,13 @@ namespace Draci_doupe
                 {
                     Result.Text = "Zemreli oba";
                     AttacksButtons();
+                    GameEndButton.Visibility = System.Windows.Visibility.Visible;
                 }
                 else if (player.EnemyLives <= 0)
                 {
                     Result.Text = "Vyhrál " + enemy.EnemyName;
                     AttacksButtons();
+                    GameEndButton.Visibility = System.Windows.Visibility.Visible;
                 }
                 else if (enemy.EnemyLives <= 0)
                 {
@@ -347,6 +307,7 @@ namespace Draci_doupe
                     {
                         person.Lives = player.EnemyLives;
                     }
+                    AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
                     AttackPopUpClose.Content = "Zavrit";
                 }
             }
@@ -365,7 +326,6 @@ namespace Draci_doupe
             EnemyDefenseBox.DataContext = enemy.EnemyDefense;
             AttackButton.Visibility = System.Windows.Visibility.Visible;
             ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
-            FighterButton.Visibility = System.Windows.Visibility.Hidden;
             AttackPopUpClose.Visibility = System.Windows.Visibility.Hidden;
             RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
             Result.Text = "";
@@ -376,14 +336,13 @@ namespace Draci_doupe
         {
             AttackButton.Visibility = System.Windows.Visibility.Hidden;
             ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
-            FighterButton.Visibility = System.Windows.Visibility.Hidden;
             RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
-            AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
         }
 
         //Metoda pro zobrazení životů, při boji
         private void EnemiesLivesInfo()
         {
+            enemy.AttackEnemy(player, enemy.EnemyAttackStrength);
             player.EnemyLives = Math.Round((Double)player.EnemyLives, 2);
             PlayerLives.Text = player.EnemyLives.ToString();
             enemy.EnemyLives = Math.Round((Double)enemy.EnemyLives, 2);
@@ -400,7 +359,7 @@ namespace Draci_doupe
             List<string> Task_option = new List<string>();
             Task_option = task.TaskSplit(task.Text_Task);
             Task_1.ItemsSource = Task_option;
-            Inventory_List.ItemsSource = inventory.GetCollection();
+            Inventory_List.ItemsSource = inventory.GetCollection();       
             InventoryID_List.ItemsSource = inventory.GetCollectionID();
             Market_List.ItemsSource = market.MarketItemName;
             Market_Price_List.ItemsSource = market.MarketItemPrice;

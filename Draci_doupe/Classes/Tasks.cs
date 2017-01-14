@@ -117,7 +117,7 @@ namespace Draci_doupe.Classes
             Task_Title.Add("Odměna");
             Task_Title.Add("Boj");
             Task_Title.Add("Pokračovat");
-            //
+
             Task_Title.Add("Pokračovat");
             Task_Title.Add("Jdi dál");
             Task_Title.Add("Pokračovat");
@@ -157,7 +157,7 @@ namespace Draci_doupe.Classes
             Task_Type.Add("pokracovat");
 
             Task_Type.Add("pokracovat");
-            Task_Type.Add("nakup");
+            Task_Type.Add("pokracovat");
             Task_Type.Add("boj");
             Task_Type.Add("pokracovat");
 
@@ -242,6 +242,37 @@ namespace Draci_doupe.Classes
             Task_Reward.Add(0);
             Task_Reward.Add(0);
             Task_Reward.Add(8);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(11);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(12);
+            Task_Reward.Add(0);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(13);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(14);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
+
+            Task_Reward.Add(0);
+            Task_Reward.Add(0);
         }
         /// <summary>
         /// Metoda pro získání typu úkolu

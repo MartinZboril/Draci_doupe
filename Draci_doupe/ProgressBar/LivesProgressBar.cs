@@ -17,7 +17,7 @@ namespace Draci_doupe.ProgressBar
         public LivesProgressBar(double lives, int level)
         {
             _minimum = 0;
-            _maximum = 100 + (level * 10);
+            _maximum = 100 + (level * 80);
             _progress = lives;
         }
 

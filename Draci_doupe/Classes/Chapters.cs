@@ -103,36 +103,29 @@ namespace Draci_doupe.Classes
             Chapter_Title.Add("Vesnice v údolí");
             Chapter_Title.Add("Nákup");
             Chapter_Title.Add("Možnost cestovat lodí");
-            //---- 5. kapitola -----
-            Chapter_Title.Add("Poušť");
-            Chapter_Title.Add("Škorpion");
-            Chapter_Title.Add("Dehidratace");
-            Chapter_Title.Add("Domorodci");
-            Chapter_Title.Add("Skoro u cíle");
-            //---- 6. kapitola ----
+            //---- 5. kapitola ----
             Chapter_Title.Add("Na moři");
             Chapter_Title.Add("Piráti");
             Chapter_Title.Add("Den a noc");
-
-            //---- 7. kapitola ----
+            //---- 6. kapitola ----
             Chapter_Title.Add("Vylodění");
             Chapter_Title.Add("Přátelská vesnice");
             Chapter_Title.Add("Poslední nákup");
             Chapter_Title.Add("Přepadení");
-            //---- 8. kapitola ----
+            //---- 7. kapitola ----
             Chapter_Title.Add("Pochod na Egypt");
             Chapter_Title.Add("Zkrotit slona");
             Chapter_Title.Add("Odměna");
             Chapter_Title.Add("První velitel");
             Chapter_Title.Add("Klíč");
-            //---- 9. kapitola ----
+            //---- 8. kapitola ----
             Chapter_Title.Add("Boj");
             Chapter_Title.Add("Velitel armády");
             Chapter_Title.Add("Další poschodí");
             Chapter_Title.Add("Velitel města");
             Chapter_Title.Add("Další poschodí");
             Chapter_Title.Add("Faraón");
-            //---- 10. kapitola
+            //---- 9. kapitola
             Chapter_Title.Add("Výhra");
             Chapter_Title.Add("Konec");
 
@@ -161,13 +154,13 @@ namespace Draci_doupe.Classes
             Chapter_Text.Add("Našel jsi přístav, odtuď se nalodíš a pojedeš přes moře do Egypta.");
 
             Chapter_Text.Add("Cesta potrvá nejméňě, tak 4 dny. Musíš být připravený, neboť je zde spousta zlých pirátů...Jako třeba támhle jdou po nás, musíme bojovat.");
-            Chapter_Text.Add("Výberně jsi vzdoraval a našel po jejich kapitánovi, tento výborný kloubouk, vem si ho.");
-            Chapter_Text.Add("Kapitán má dobrou zprávu za jeden den a jednu noc jsme v Egyptě");
+            Chapter_Text.Add("Výberně jsi vzdoraval a našel si po jejich kapitánovi, tento výborný kloubouk, vem si ho.");
+            Chapter_Text.Add("Kapitán má dobrou zprávu za jeden den a jednu noc jsme v Egyptě.");
 
             Chapter_Text.Add("Vyšlo Slunce a my jsme v Egyptě, zde už jde naše cesta do finále. Zde se rozhodne o osudu tvého národa.");
             Chapter_Text.Add("Hned co jsi se vylodil jsi našel vesnici, lidi jsou zde přátelští a můžou mít skvělé věci na prodej a bude to poslední zastávka či-li povinná, před hlavním boje. Jdi tam.");
             Chapter_Text.Add("Výborně, nakoupil jsi si a můžeme se dát do boje, teď si zdřímneme. Počkat co je to támhle? To jsou poslové zla musíme bojovat.");
-            Chapter_Text.Add("Vyhrál jsi, ale nepřátelé vědi, že jsi tady. To nám ubírá moment překvapení. Našteští jsi ohromil místní domorodce a ty ti přislíbili pomoc.");
+            Chapter_Text.Add("Vyhrál jsi a získal meč kapitána, kteří nás napadli, ovšem nepřátelé vědi, že jsi tady. To nám ubírá moment překvapení. Našteští jsi ohromil místní domorodce a ty ti přislíbili pomoc.");
 
             Chapter_Text.Add("Pochoduješ na Egypt, pro získání svého dědictví.");
             Chapter_Text.Add("Jeden z našich slonů se nedá zkrotit, můžeš pomoct a odměna tě nemine.");
@@ -175,7 +168,7 @@ namespace Draci_doupe.Classes
             Chapter_Text.Add("A je to tu! Jsme před branami hlavní města Egypta. Musíš zabít tohoto klíčníka, abychom se dostali dovnitř.");
             Chapter_Text.Add("Klíčníka si zníčil a získal si klíč od brány. Domorodci způsobí chaos ve městě, ty se mezitím přemísti do chrámu.");
 
-            Chapter_Text.Add("A nyní to přichází, bodou tě čekat tři klíčové poschodí v každém se nacházejí ti nejlepší bojovníci Egypta. První z nich je velitel armády.");
+            Chapter_Text.Add("A nyní to přichází, bodou tě čekat tři klíčové poschodí v každém se nacházejí ti nejlepší bojovníci Egypta. Musíš se pořádně vyzbrojit, první z nich je velitel armády.");
             Chapter_Text.Add("Porazil jsi ho, ale to nejtězší teprve přijde, pokračuj dál");
             Chapter_Text.Add("Jak jdeš dalším poschodí, zjistíš, že ve města začínají mít převoha tvý spojenci. To je velmi dobře, teď musíš splnit ty svojí část.");
             Chapter_Text.Add("Dalším nepřítelem je velitel města. Tento válečník je starší, ale za to velmi zkušený. Bacha na něj!");

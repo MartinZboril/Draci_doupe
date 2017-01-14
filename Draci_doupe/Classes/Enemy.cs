@@ -81,17 +81,6 @@ namespace Draci_doupe
             attackBehavior.Attack(enemy, _attackStrenght);
         }
         /// <summary>
-        /// Útok nepřítele, jako šermíř
-        /// </summary>
-        /// <param name="enemy">Nepřítel na kterého se útočí</param>
-        /// <param name="attack">Síla útoku</param>
-        public void FighterAttackEnemy(Enemy enemy, int attack)
-        {
-            int _attackStrenght = attack;
-            IAttackBehavior attackBehavior = new FighterAttackBehavior();
-            attackBehavior.Attack(enemy, _attackStrenght);
-        }
-        /// <summary>
         /// Útok nepřítele, lučištník
         /// </summary>
         /// <param name="enemy">Nepřítel na kterého se útočí</param>
