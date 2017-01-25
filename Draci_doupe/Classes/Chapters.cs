@@ -77,9 +77,11 @@ namespace Draci_doupe.Classes
             //---- 10. kapitola
             Chapter_ID.Add(43);
             Chapter_ID.Add(44);
+            Chapter_ID.Add(45);
 
             //---- 1. kapitola
             Chapter_Title.Add("Úvod");
+            Chapter_Title.Add("Výběr pomocníků");
             Chapter_Title.Add("Štít");
             Chapter_Title.Add("Kamínky");
             Chapter_Title.Add("Pochod");
@@ -128,13 +130,14 @@ namespace Draci_doupe.Classes
             //---- 9. kapitola
             Chapter_Title.Add("Konec");
 
-            Chapter_Text.Add("Vítám tě ve hře. Včera nás přepadli zlý bojovnící, sebrali nám skoro vše. To nejdůležitější je, že vza-li kámen, který pohánní náš strom života. Je tedy na tobě, aby si ho získal zpět. Budeš muset jít, až do země, které se říká svět Chrámů. Cesta bude nebezpečná, proto si vem sebou 2 společníky. Šermíř ti přidá do hry 50 bodů obrany, lučištník ti útok znásobí 5x, ovšem hráč na tebe zaútočí 2x. Léčitel ti po bitvě přidá 1/4 tvých životů.");
+            Chapter_Text.Add("Vítám tě ve hře. Včera nás přepadli zlý bojovnící, sebrali nám skoro vše. To nejdůležitější je, že vza-li kámen, který pohánní náš strom života. Je tedy na tobě, aby si ho získal zpět. Budeš muset jít, až do země, které se říká svět Chrámů.");
+            Chapter_Text.Add("Záchrana nebude vůbec jednoduchá, proto si vem sebou 2 ze 3 nabízených pomocníků. Šermíř ti přidá 50 bodů obrany, lučištník umožní útok znásobit 5, ale soupeř ten tah útočí 2x. Léčitel přidá na konci tahu 1/4 tvých životů.");
             Chapter_Text.Add("Po výběru ti vůdce tvé vesnice nabídnul štít. Cheš ho nebo ne? Rozhodni se a můžeme pokračovat.");
             Chapter_Text.Add("Ještě než si vyšel zastavil tě tvůj kamarád a nabízí ti kamínky, za které si můžeš v budoucnu něco koupit. Vem si je budou se hodit.");
             Chapter_Text.Add("Teď, když máš základní výbavu můžeme se vydat na výpravu.");
 
             Chapter_Text.Add("Tak to je nemilé, hned co jsi vyrazil, narazil jsi na přepadení karavany. Můžeš se vyhnout nebo bojovat. Pokud se vyhneš cesta bude pokračovat. Pokud budeš chtít bojovat, ztratíš sice životy, ale můžeš dostat odměnu. Je to jen na tobě.");
-            Chapter_Text.Add("Odměna pro tebe");
+            Chapter_Text.Add("Získal jsi jako odměnu kožich, vem si ho.");
             Chapter_Text.Add("Ušel jsi už poměrně dlouhou cestu. Jestli chceš můžeme si odpočinout v támhle v posezení u druida, které je nedaleko odsuď, neboť další cesta bude náročná. Obsahuje spoustu nebezpečí.");
             Chapter_Text.Add("Doufám, že jsi si nakoupil, jak si chtěl. Na cestě nás můžou potkat jěště další možnosti pro nákup.");
             Chapter_Text.Add("To není dobré, potkal nás medvěd. Můžeš bojovat, sice utrpíš nějaké ztráty, ale dostaneš odměnu nebo se můžeš vyhnout.");

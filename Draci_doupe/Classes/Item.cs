@@ -44,6 +44,7 @@ namespace Draci_doupe
             Item_ID.Add(21);
             Item_ID.Add(22);
             Item_ID.Add(23);
+            Item_ID.Add(24);
 
             Item_Name.Add("Nic");
             Item_Name.Add("Meč +20 síly útoku");
@@ -69,6 +70,7 @@ namespace Draci_doupe
             Item_Name.Add("Meč hrdlořezů +30 útoku");
             Item_Name.Add("Brnění ze slonoviny +25 obrany");
             Item_Name.Add("Balíček jídla +10 životů");
+            Item_Name.Add("Kůže +10 obrany");
 
             Item_Type.Add("Nic");
             Item_Type.Add("Předmět");
@@ -94,6 +96,7 @@ namespace Draci_doupe
             Item_Type.Add("Předměty Egypta");
             Item_Type.Add("Předměty Egypta");
             Item_Type.Add("Předměty Egypta");
+            Item_Type.Add("Předmět");
 
             Item_BonusType.Add("Nic");
             Item_BonusType.Add("Útok");
@@ -119,6 +122,7 @@ namespace Draci_doupe
             Item_BonusType.Add("Útok");
             Item_BonusType.Add("Obrana");
             Item_BonusType.Add("Životy");
+            Item_BonusType.Add("Obrana");
 
             Item_Bonus.Add(0);
             Item_Bonus.Add(20);
@@ -143,6 +147,7 @@ namespace Draci_doupe
             Item_Bonus.Add(20);
             Item_Bonus.Add(30);
             Item_Bonus.Add(25);
+            Item_Bonus.Add(10);
             Item_Bonus.Add(10);
 
             Item_Price.Add(0);
@@ -169,6 +174,7 @@ namespace Draci_doupe
             Item_Price.Add(75);
             Item_Price.Add(45);
             Item_Price.Add(30);
+            Item_Price.Add(0);
 
             _itemid = Item_ID[n];
             _itemname = Item_Name[n];

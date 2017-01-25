@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -117,6 +118,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\MedievalSharp.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,6 +127,47 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\Scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Barbarians.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Barbarians.jpg" />
+    <Resource Include="Images\Bear.png" />
+    <Resource Include="Images\Boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pirate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pirate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Elephant.png" />
+    <Resource Include="Images\Guard1.png" />
+    <Resource Include="Images\Guard2.png" />
+    <Resource Include="Images\Guard3.png" />
+    <Resource Include="Images\Ninja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pharaoh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -33,6 +33,7 @@ namespace Draci_doupe
             _enemyattackstrength = enemies.GetEnemyAttackStrength(n);
             _enemydefense = enemies.GetEnemyDefense(n);
             _enemyexperience = enemies.GetEnemyExperience(n);
+            _image = enemies.GetEnemyImage(n);
         }
         private int _enemyid;
         public int ID
@@ -69,6 +70,12 @@ namespace Draci_doupe
         {
             get { return _enemyexperience; }
             set { _enemyexperience = value; }
+        }
+        private string _image;
+        public string Image
+        {
+            get { return _image; }
+            set { _image = value; }
         }
         /// <summary>
         /// Útok nepřítele, klasický

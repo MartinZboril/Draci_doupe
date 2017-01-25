@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Draci_doupe"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="500" MinWidth="925" MaxHeight="500" MaxWidth="925" Height="500" Width="925">
-    <Grid RenderTransformOrigin="0.507,0.649">
-        <Label Content="Dračí doupě" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="36" FontFamily="Segoe UI Light" Margin="162,86,160,175"></Label>
-        <Button x:Name="button_start" Content="Začít hru" Width="100" Height="50" Click="Button_Click" Margin="201,165,216,104" RenderTransformOrigin="0.57,-0.54"></Button>
+    <Grid Background="BurlyWood" RenderTransformOrigin="0.507,0.649">
+        <Label Content="Dračí doupě" FontFamily="{StaticResource Medieval}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="56" Margin="296,154,254,243" HorizontalContentAlignment="Center" Width="367"></Label>
+        <Label Content="Záchrana dědictví" FontFamily="{StaticResource Medieval}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="36" Margin="319,231,278,197" HorizontalContentAlignment="Center" Width="320" Height="41"></Label>
+        <Button x:Name="button_start" Foreground="Wheat" Background="Black" FontFamily="{StaticResource Medieval}" Content="Začít hru" Click="Button_Click" Margin="417,308,386,105" RenderTransformOrigin="0.57,-0.54"/>
         <Frame x:Name="_mainFrame"  NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

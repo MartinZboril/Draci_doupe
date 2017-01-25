@@ -14,6 +14,7 @@ namespace Draci_doupe.Classes
         List<int> Enemy_AttackStrength = new List<int>();
         List<int> Enemy_Defense = new List<int>();
         List<int> Enemy_Experience = new List<int>();
+        List<string> Enemy_Images = new List<string>();
 
         public Enemies()
         {
@@ -28,7 +29,7 @@ namespace Draci_doupe.Classes
             Enemy_ID.Add(9);
             Enemy_ID.Add(10);
 
-            Enemy_Name.Add("Nepřátelská karavana");
+            Enemy_Name.Add("Barbaři");
             Enemy_Name.Add("Medvěd");
             Enemy_Name.Add("Velitel");
             Enemy_Name.Add("Kapitán pirátů");
@@ -82,6 +83,17 @@ namespace Draci_doupe.Classes
             Enemy_Experience.Add(200);
             Enemy_Experience.Add(200);
             Enemy_Experience.Add(200);
+
+            Enemy_Images.Add("Images/Barbarians.jpg");
+            Enemy_Images.Add("Images/Bear.png");
+            Enemy_Images.Add("Images/Boss.png");
+            Enemy_Images.Add("Images/Pirate.png");
+            Enemy_Images.Add("Images/Ninja.png");
+            Enemy_Images.Add("Images/Elephant.png");
+            Enemy_Images.Add("Images/Guard1.png");
+            Enemy_Images.Add("Images/Guard3.png");
+            Enemy_Images.Add("Images/Guard2.png");
+            Enemy_Images.Add("Images/Pharaoh.png");
         }
         /// <summary>
         /// Metoda pro získání jména nepřítele z kolekce
@@ -132,6 +144,16 @@ namespace Draci_doupe.Classes
         {
             int experience = Enemy_Experience[num];
             return experience;
+        }
+        /// <summary>
+        /// Metoda pro získání obrázku nepřítele
+        /// </summary>
+        /// <param name="num">ID nepřítele</param>
+        /// <returns>Nepřítelův obrázek</returns>
+        public string GetEnemyImage(int num)
+        {
+            string image = Enemy_Images[num];
+            return image;
         }
     }
 }

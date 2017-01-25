@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Draci_doupe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Medieval">pack://application:,,,/Fonts/#MedievalSharp</FontFamily>
+        <BitmapImage x:Key="Scroll" UriSource="Resources/Scroll.png"></BitmapImage>
+        <BitmapImage x:Key="Barbarians" UriSource="Images/Barbarians.jpg"></BitmapImage>
+        <BitmapImage x:Key="Bear" UriSource="Images/Bear.png"></BitmapImage>
+        <BitmapImage x:Key="Boss" UriSource="Images/Boss.png"></BitmapImage>
+        <BitmapImage x:Key="Pirate" UriSource="Images/Pirate.png"></BitmapImage>
+        <BitmapImage x:Key="Player" UriSource="Images/player.png"></BitmapImage>
     </Application.Resources>
 </Application>

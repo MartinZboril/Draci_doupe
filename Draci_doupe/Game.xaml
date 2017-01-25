@@ -24,34 +24,43 @@
             </Grid.RowDefinitions>
 
             <!--Content-Text-->
-            <Grid x:Name="ContentGrid" Background="White" Grid.Column="0" Grid.Row="0">
-                <TextBlock x:Name="Title" Text="{Binding Name_Chapter}" FontSize="36" FontWeight="Bold" Margin="50,50,24,296"></TextBlock>
-                <TextBlock x:Name="Text" Text="{Binding Text_Chapter}" FontSize="18" Margin="50,109,24,10" TextWrapping="Wrap"></TextBlock>
+            <Grid x:Name="ContentGrid" Background="BurlyWood" Grid.Column="0" Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource Medieval}" x:Name="Title" Text="{Binding Name_Chapter}" FontSize="36" FontWeight="Bold" Margin="67,106,48,252" Panel.ZIndex="1"/>
+                <TextBlock FontFamily="{StaticResource Medieval}" x:Name="Text"  Text="{Binding Text_Chapter}" FontSize="20" Margin="67,153,48,79" TextWrapping="Wrap" Panel.ZIndex="1"></TextBlock>
+                <Image Source="{StaticResource Scroll}" Margin="10,31,0,0"/>
             </Grid>
 
-            <!--Content-Action-->
-            <Grid x:Name="ContentActionGrid" Background="White" Grid.Column="1" Grid.Row="0">
-                <TextBlock x:Name="Task_title" Text="{Binding Name_task}" FontSize="36" FontWeight="Bold" Margin="32,34,31,313" ></TextBlock>
-                <ListView x:Name="Task_1" ItemsSource="{Binding}" Margin="32,92,79,106">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <CheckBox x:Name="Checkbox" Checked="CheckBox_Checked" IsChecked="False" Content="{Binding}" Tag="{Binding}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button x:Name="Continue_button" Content="0/2" Margin="168,320,190,38" Cursor="No"/>
-            </Grid>
+            <Border BorderBrush="BurlyWood" BorderThickness="1">
+                <!--Content-Action-->
+                <Grid x:Name="ContentActionGrid" Background="BurlyWood" Grid.Column="1" Grid.Row="0" Margin="458,0,-462,-2">
+                    <TextBlock FontFamily="{StaticResource Medieval}" x:Name="Task_title" Text="{Binding Name_task}" FontSize="36" FontWeight="Bold" Margin="32,64,79,297" ></TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="5" Margin="32,108,79,85"></Border>
+                    <ListView FontFamily="{StaticResource Medieval}" x:Name="Task_1" ItemsSource="{Binding}" Background="Wheat" Margin="37,113,84,90">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <CheckBox x:Name="Checkbox" Checked="CheckBox_Checked" IsChecked="False" Content="{Binding}" Tag="{Binding}" FontSize="20"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="Continue_button" FontFamily="{StaticResource Medieval}" Visibility="Hidden" BorderBrush="Black" Content="0/2" Foreground="Wheat" Background="Black" Margin="167,334,191,24" Cursor="No" RenderTransformOrigin="0.478,0.851"/>
+                </Grid>
+            </Border>
 
             <!--Menu-->
-            <Grid x:Name="MenuGrid" Background="#FFE8E8E8" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
-                <Button x:Name="InventoryButton" Content="Inventar" Click="InventoryButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586"/>
-                <Button x:Name="ProfileButton" Content="Profil" Click="ProfileButton_Click" Background="White" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4"/>
+            <Grid x:Name="MenuGrid" Background="#FF341616" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                <Button x:Name="InventoryButton" FontFamily="{StaticResource Medieval}" BorderBrush="Wheat" Content="Inventář" Click="InventoryButton_Click" Foreground="Wheat" Background="Black" Grid.Column="0" Width="80" Height="35" Margin="26,10,819,55" RenderTransformOrigin="0.381,0.586" FontSize="16"/>
+                <Button x:Name="ProfileButton" FontFamily="{StaticResource Medieval}" BorderBrush="Wheat" Content="Profil"  Click="ProfileButton_Click" Foreground="Wheat" Background="Black" Grid.Column="0" Width="80" Height="35" Margin="146,10,699,55" RenderTransformOrigin="0.269,0.4" FontSize="16"/>
+                <Button x:Name="AttackButton" FontFamily="{StaticResource Medieval}" Visibility="Hidden" BorderBrush="Wheat" Foreground="Wheat" Background="Black" Grid.Column="0" Content="Začít" Click="AttackButton_Click" Margin="26,10,819,55" FontSize="16"/>
+                <Button x:Name="ArcheryButton" FontFamily="{StaticResource Medieval}" BorderBrush="Wheat" Foreground="Wheat" Background="Black" Grid.Column="0" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="146,10,699,55" RenderTransformOrigin="0.23,0.36" FontSize="16"/>
+                <Button x:Name="RandomAttackButton" FontFamily="{StaticResource Medieval}" BorderBrush="Wheat" Foreground="Wheat" Background="Black" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="261,10,539,55" FontSize="16"/>
+                <Button x:Name="AttackPopUpClose" FontFamily="{StaticResource Medieval}" Background="Black" Foreground="Wheat" Grid.Column="0" Content="Zavřít" BorderBrush="Wheat" Click="AttackPopUpClose_Click" Visibility="Hidden" Margin="429,10,420,55" FontSize="16"/>
+                <Button x:Name="GameEndButton" FontFamily="{StaticResource Medieval}" Background="Black" Foreground="Wheat"  Grid.Column="0" Content="Konec" Click="GameEndButton_Click" Visibility="Hidden" Margin="429,10,420,55" FontSize="16"/>
             </Grid>
 
             <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="InventoryPopUp" Width="909" Height="400" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
+                <Grid Background="BurlyWood">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -61,33 +70,35 @@
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Inventar</TextBlock>
-                    <TextBlock Text="Položka" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="194,61,349,213" Grid.ColumnSpan="2" FontWeight="Bold"/>
-                    <TextBlock Text="Použít" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="136,61,255,213"  FontWeight="Bold" RenderTransformOrigin="-0.133,0.5"/>
-                    <ListView x:Name="Inventory_List" ItemsSource="{Binding}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,349,30">
+                    <TextBlock VerticalAlignment="Top" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Margin="385,15,384,0">Inventář</TextBlock>
+                    <TextBlock Text="Položka" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="182,61,361,213" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <TextBlock Text="Použít" FontFamily="{StaticResource Medieval}" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="136,61,255,213"  FontWeight="Bold" RenderTransformOrigin="-0.133,0.5"/>
+                    <Border BorderBrush="Black" BorderThickness="5" Margin="182,87,349,30" Grid.ColumnSpan="2"></Border>
+                    <ListView x:Name="Inventory_List" Background="Wheat" FontFamily="{StaticResource Medieval}" ItemsSource="{Binding}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="187,92,354,35">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding}"></TextBlock>
+                                    <TextBlock Text="{Binding}" FontFamily="{StaticResource Medieval}" FontSize="18" ></TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView x:Name="InventoryID_List" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="136,92,228,30">
+                    <Border BorderBrush="Black" BorderThickness="5" Grid.Column="1" Margin="136,87,222,30"></Border>
+                    <ListView x:Name="InventoryID_List" Background="Wheat" FontFamily="{StaticResource Medieval}" FontSize="18" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="141,92,227,35">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <CheckBox x:Name="Checkbox_ItemUse" Tag="{Binding}" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" />
+                                    <CheckBox x:Name="Checkbox_ItemUse" Tag="{Binding}" FontSize="18" Checked="Checkbox_ItemUse_Checked" IsChecked="False" Content="Pouzit" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button x:Name="InventoryPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="InventoryPopUpClose_Click"></Button>
+                    <Button x:Name="InventoryPopUpClose" BorderBrush="Black" FontFamily="{StaticResource Medieval}" Foreground="Wheat" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Width="100" Content="Zavřít" Click="InventoryPopUpClose_Click" Background="Black" Margin="404,25,405,25"/>
                 </Grid>
             </Popup>
 
             <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="ProfilePopUp" Width="909" Height="400" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
+                <Grid Background="BurlyWood">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -96,30 +107,35 @@
                         <RowDefinition Height="300"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Profil hráče</TextBlock>
-                    <TextBlock Text="Hráč:" Grid.Column="0" Margin="31,73,354,197" FontSize="24" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
-                    <TextBlock x:Name="Name" Grid.Column="0" Margin="100,73,42,197" FontSize="24"></TextBlock>
-                    <TextBlock Text="Level:" Grid.Column="0" Margin="31,112,354,156" FontSize="24" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="Level" Grid.Column="0" Margin="105,112,58,156" FontSize="24"></TextBlock>
-                    <TextBlock Text="Pomocníci:" Grid.Column="0" Margin="31,149,300,119" FontSize="24" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="HelpersInfo" Grid.Column="0" Margin="159,149,63,119" FontSize="24" Text="{Binding GetHelpers}"></TextBlock>
-                    <TextBlock Text="Další level:" Grid.Column="0" Margin="31,270,354,10" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
-                    <TextBlock Text="Životy:" Grid.Column="0" Margin="31,230,375,50" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
-                    <ProgressBar x:Name="LivesProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="84,230,37,50" />
-                    <ProgressBar x:Name="LevelsProgressbar" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="105,270,16,10" />
-                    <Button x:Name="ProfilePopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="ProfilePopUpClose_Click"></Button>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Útok:" FontSize="24" FontWeight="Bold" Margin="42,73,344,200" RenderTransformOrigin="0.566,0.333"></TextBlock>
-                    <TextBlock x:Name="attack" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="116,73,219,200" RenderTransformOrigin="0.475,0.537"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Obrana:" FontSize="24" FontWeight="Bold" Margin="42,112,317,161" RenderTransformOrigin="0.566,0.333"></TextBlock>
-                    <TextBlock x:Name="defense" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="143,112,192,161" RenderTransformOrigin="0.5,0.537"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Zkušenosti:" FontSize="24" FontWeight="Bold" Margin="42,149,279,124" RenderTransformOrigin="0.566,0.333"></TextBlock>
-                    <TextBlock x:Name="experienceinfo" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="181,149,154,124" RenderTransformOrigin="0.508,0.611"/>
+                    <TextBlock FontFamily="{StaticResource Medieval}" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" Margin="352,10,339,0" FontWeight="Bold" Width="218">Profil hráče</TextBlock>
+                    <Border BorderBrush="Black" BorderThickness="5" Margin="21,73,19,75"></Border>
+                    <Label Background="Wheat" Margin="33,85,33,87"></Label>
+                    <TextBlock Text="Hráč:" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="47,95,338,173" FontSize="24" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"></TextBlock>
+                    <TextBlock x:Name="Name" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="121,97,49,173" FontSize="24"></TextBlock>
+                    <TextBlock Text="Level:" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="47,132,338,136" FontSize="24" FontWeight="Bold" RenderTransformOrigin="0.478,0.927"></TextBlock>
+                    <TextBlock x:Name="Level" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="121,133,194,135" FontSize="24"></TextBlock>
+                    <TextBlock Text="Pomocníci:" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="47,169,284,99" FontSize="24" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="HelpersInfo" FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="175,170,47,98" FontSize="24" Text="{Binding GetHelpers}"></TextBlock>
+                    <TextBlock Text="Další level:" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.Row="1"  FontSize="14" FontWeight="Bold" Margin="21,10,354,69" ></TextBlock>
+                    <TextBlock FontFamily="{StaticResource Medieval}" Grid.Column="0" Margin="21,270,383,10" FontSize="14" FontWeight="Bold" RenderTransformOrigin="1.587,0.375"><Run Text="Životy"/><Run Text=":"/></TextBlock>
+                    <Border BorderBrush="Gold" BorderThickness="3" Margin="71,262,47,5"></Border>
+                    <ProgressBar x:Name="LivesProgressbar" BorderThickness="0" Foreground="#FF341616" Background="Wheat" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Margin="74,265,50,8" />
+                    <Border Grid.Row="1" BorderBrush="Gold" BorderThickness="3" RenderTransformOrigin="0.5,0.5" Margin="100,2,18,65"></Border>
+                    <ProgressBar x:Name="LevelsProgressbar" BorderThickness="0" Foreground="#FF341616" Background="Wheat" Minimum="{Binding Minimum}" Maximum="{Binding Maximum}" Value="{Binding Progress}" Grid.Row="1" Margin="103,5,21,68" />
+                    <Button x:Name="ProfilePopUpClose" FontFamily="{StaticResource Medieval}" Background="Black" Foreground="Wheat" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Width="100" Content="Zavřít" Click="ProfilePopUpClose_Click" Margin="404,55,405,10"/>
+                    <Border BorderBrush="Black" Grid.Column="1" BorderThickness="5" Margin="21,73,19,75"></Border>
+                    <Label Grid.Column="1"  Background="Wheat" Margin="33,85,33,87"></Label>
+                    <TextBlock Grid.Column="1" FontFamily="{StaticResource Medieval}" Grid.Row="0" Text="Útok:" FontSize="24" FontWeight="Bold" Margin="47,95,339,173" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="attack" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="121,95,214,178" RenderTransformOrigin="0.475,0.537"/>
+                    <TextBlock Grid.Column="1" FontFamily="{StaticResource Medieval}" Grid.Row="0" Text="Obrana:" FontSize="24" FontWeight="Bold" Margin="47,132,312,136" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="defense" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="148,133,187,140" RenderTransformOrigin="0.5,0.537"/>
+                    <TextBlock Grid.Column="1" FontFamily="{StaticResource Medieval}" Grid.Row="0" Text="Zkušenosti:" FontSize="24" FontWeight="Bold" Margin="47,169,274,104" RenderTransformOrigin="0.566,0.333"></TextBlock>
+                    <TextBlock x:Name="experienceinfo" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="1" Grid.Row="0" FontSize="24" Margin="186,169,149,104" RenderTransformOrigin="0.508,0.611"/>
                 </Grid>
             </Popup>
 
-            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="AttackPopUp" Width="909" Height="500" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
+            <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="AttackPopUp" Width="909" Height="400" PopupAnimation="Slide" >
+                <Grid Background="BurlyWood">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -128,35 +144,35 @@
                         <RowDefinition Height="400"></RowDefinition>
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
-
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Utok</TextBlock>
-                    <TextBlock Text="Jméno:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="Player" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="129,69,50,302" Height="29"></TextBlock>
-                    <TextBlock Text="Jméno:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,69,330,302" Height="29" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="Enemy" Grid.Column="1" Margin="130,69,63,302" FontSize="24" VerticalAlignment="Center" Height="29"></TextBlock>
-                    <TextBlock Text="Životy:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="PlayerLives" Grid.Column="0" FontSize="24" Margin="129,109,155,262"></TextBlock>
-                    <TextBlock Text="Životy:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,109,330,246" Height="45" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="EnemyLives" Grid.Column="1" FontSize="24" Margin="125,109,160,262"></TextBlock>
-                    <TextBlock x:Name="Result" TextAlignment="Center"  VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18" Margin="275,356,275,10" FontWeight="Bold" Grid.ColumnSpan="2" Height="34"/>
-                    <TextBlock Text="Útok:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,347,162" Height="32" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="EnemyAttackBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="113,209,172,162"></TextBlock>
-                    <TextBlock Text="Obrana:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,312,117" Height="45" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="EnemyDefenseBox" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="138,238,147,133"></TextBlock>
-                    <TextBlock Text="Útok:" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="42,206,344,162" Height="32" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="PlayerAttackBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="113,209,172,162"></TextBlock>
-                    <TextBlock Text="Obrana:" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="42,238,317,117" Height="45" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="PlayerDefenseBox" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="138,238,147,133"></TextBlock>
-                    <Button x:Name="AttackPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="AttackPopUpClose_Click" Visibility="Hidden"></Button>
-                    <Button x:Name="GameEndButton" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Konec" Click="GameEndButton_Click" Visibility="Hidden"></Button>
-                    <Button x:Name="AttackButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Začít" Click="AttackButton_Click" Margin="42,25,312,25"></Button>
-                    <Button x:Name="ArcheryButton" Grid.Column="0" Grid.Row="1" Height="50" Width="100" Content="Lučištník" Click="ArcheryButton_Click" Visibility="Hidden" Margin="182,25,172,25" RenderTransformOrigin="0.23,0.36"></Button>
-                    <Button x:Name="RandomAttackButton" Grid.Row="1" Height="50" Width="100" Content="Speciální útok" Click="RandomAttackButton_Click" Visibility="Hidden" Margin="326,25,28,25"/>
+                    <Image Source="{StaticResource Player}" Margin="135,41,98,193" Width="221" Height="166"></Image>
+                    <Image x:Name="Enemy_Image" Grid.Column="1" Source="{StaticResource Barbarians}" Margin="102,41,132,193"></Image>
+                    <Border BorderBrush="Black" BorderThickness="5" Margin="63,221,42,29"></Border>
+                    <Label Background="Wheat" Margin="68,226,47,35"></Label>
+                    <Border BorderBrush="Black" Grid.Column="1" BorderThickness="5" Margin="43,221,62,29"></Border>
+                    <Label Background="Wheat" Grid.Column="1" Margin="49,226,67,34"></Label>
+                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontFamily="{StaticResource Medieval}" FontWeight="Bold" Text="Souboj" Width="121" Margin="394,10,394,0"/>
+                    <TextBlock Text="Jméno:" FontFamily="{StaticResource Medieval}" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="106,238,266,135" Height="27" FontWeight="Bold" RenderTransformOrigin="0.756,0.481"></TextBlock>
+                    <TextBlock x:Name="Player" FontFamily="{StaticResource Medieval}" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="193,238,98,135" Height="27"></TextBlock>
+                    <TextBlock Text="Jméno:" FontFamily="{StaticResource Medieval}" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="71,238,301,133" Height="29" FontWeight="Bold" RenderTransformOrigin="0.446,0.448"></TextBlock>
+                    <TextBlock x:Name="Enemy" FontFamily="{StaticResource Medieval}" Grid.Column="1" Margin="159,238,132,133" FontSize="24" VerticalAlignment="Center" Height="29"></TextBlock>
+                    <TextBlock Text="Životy:" FontFamily="{StaticResource Medieval}" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="106,270,274,101" Height="29" FontWeight="Bold" RenderTransformOrigin="0.818,0.207"></TextBlock>
+                    <TextBlock x:Name="PlayerLives" FontFamily="{StaticResource Medieval}" Grid.Column="0" FontSize="24" Margin="185,270,128,103"></TextBlock>
+                    <TextBlock Text="Životy:" Grid.Column="1" FontFamily="{StaticResource Medieval}" FontSize="24"  VerticalAlignment="Center" Margin="71,270,309,102" Height="28" FontWeight="Bold" RenderTransformOrigin="0.36,0.5"></TextBlock>
+                    <TextBlock x:Name="EnemyLives" FontFamily="{StaticResource Medieval}" Grid.Column="1" FontSize="24" Margin="151,272,162,101"></TextBlock>
+                    <TextBlock x:Name="Result" FontFamily="{StaticResource Medieval}" TextAlignment="Center" Text="vs." VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="24" Margin="356,135,353,231" FontWeight="Bold" Grid.ColumnSpan="2" Height="34"/>
+                    <TextBlock Text="Útok:" FontFamily="{StaticResource Medieval}" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="71,299,327,76" Height="25" FontWeight="Bold" RenderTransformOrigin="0.491,1.36"></TextBlock>
+                    <TextBlock x:Name="EnemyAttackBox" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="133,299,152,76"></TextBlock>
+                    <TextBlock Text="Obrana:" FontFamily="{StaticResource Medieval}" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="106,329,259,42" Height="29" FontWeight="Bold" RenderTransformOrigin="0.781,0.017"></TextBlock>
+                    <TextBlock x:Name="EnemyDefenseBox" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="1" FontSize="24" Margin="166,329,119,44"></TextBlock>
+                    <TextBlock Text="Útok:" FontFamily="{StaticResource Medieval}" Grid.Column="0"  FontSize="24"  VerticalAlignment="Center" Margin="106,299,292,76" Height="25" FontWeight="Bold" RenderTransformOrigin="0.893,0.02"></TextBlock>
+                    <TextBlock x:Name="PlayerAttackBox" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="167,299,118,76"></TextBlock>
+                    <TextBlock Text="Obrana:" FontFamily="{StaticResource Medieval}" Grid.Column="1"  FontSize="24"  VerticalAlignment="Center" Margin="71,328,294,42" Height="30" FontWeight="Bold"></TextBlock>
+                    <TextBlock x:Name="PlayerDefenseBox" FontFamily="{StaticResource Medieval}" Text="{Binding}" Grid.Column="0" FontSize="24" Margin="200,329,85,44"></TextBlock>
                 </Grid>
             </Popup>
 
             <Popup Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Placement="Relative" x:Name="MarketPopUp" Width="909" Height="400" PopupAnimation="Slide" >
-                <Grid Background="#FFF1F1F1">
+                <Grid Background="BurlyWood">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -166,19 +182,21 @@
                         <RowDefinition Height="100"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBlock VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold">Market</TextBlock>
-                    <TextBlock Text="Položka" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="194,61,262,213" Grid.ColumnSpan="2" FontWeight="Bold"/>
-                    <TextBlock Text="Cena" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="198,61,193,213"  FontWeight="Bold"/>
-                    <ListView x:Name="Market_List" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="194,92,262,30">
+                    <TextBlock VerticalAlignment="Top" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Margin="392,15,390,0">Obchod</TextBlock>
+                    <TextBlock Text="Položka" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.Row="0" FontSize="22" Margin="130,56,327,218" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <TextBlock Text="Cena" FontFamily="{StaticResource Medieval}" Grid.Column="1" Grid.Row="0" FontSize="22" Margin="174,56,217,218"  FontWeight="Bold" RenderTransformOrigin="0.008,-0.308"/>
+                    <Border BorderBrush="Black" BorderThickness="5" Grid.ColumnSpan="2" Margin="128,82,327,5"></Border>
+                    <ListView x:Name="Market_List" Background="Wheat" FontFamily="{StaticResource Medieval}" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="134,87,333,10">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <CheckBox x:Name="Checkbox_Pay" Checked="Checkbox_Pay_Checked" IsChecked="False" Content="{Binding}" Tag="{Binding GetId}"/>
+                                    <CheckBox x:Name="Checkbox_Pay" Checked="Checkbox_Pay_Checked" IsChecked="False" Content="{Binding}" FontSize="18" Tag="{Binding GetId}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView x:Name="Market_Price_List" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="198,92,193,30">
+                    <Border Grid.Column="1" BorderBrush="Black" BorderThickness="5" Margin="174,82,193,5"></Border>
+                    <ListView x:Name="Market_Price_List" Background="Wheat" FontFamily="{StaticResource Medieval}" FontSize="18" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" Margin="179,88,198,10">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -187,9 +205,9 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <TextBlock Text="Peníze:" Grid.Column="0" Grid.Row="1" FontSize="24" Margin="10,29,368,42"></TextBlock>
-                    <TextBlock x:Name="Money" Text="" Grid.Column="0" Grid.Row="1" FontSize="24" FontWeight="Bold" Margin="91,29,186,42"></TextBlock>
-                    <Button x:Name="MarketPopUpClose" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="MarketPopUpClose_Click"></Button>
+                    <TextBlock Text="Peníze:" FontFamily="{StaticResource Medieval}" Grid.Column="0" Grid.Row="1" FontSize="24" Margin="46,29,332,42"></TextBlock>
+                    <TextBlock x:Name="Money" FontFamily="{StaticResource Medieval}" Text="" Grid.Column="0" Grid.Row="1" FontSize="24" FontWeight="Bold" Margin="134,29,143,42"></TextBlock>
+                    <Button x:Name="MarketPopUpClose" FontFamily="{StaticResource Medieval}" Background="Black" Foreground="Wheat" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="50" Width="100" Content="Zavrit" Click="MarketPopUpClose_Click"></Button>
                 </Grid>
             </Popup>
 

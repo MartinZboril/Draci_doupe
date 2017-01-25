@@ -78,8 +78,10 @@ namespace Draci_doupe.Classes
             //---- 10. kapitola
             Task_ID.Add(43);
             Task_ID.Add(44);
+            Task_ID.Add(45);
             //--------------------------------
             //1
+            Task_Title.Add("Pokračovat");
             Task_Title.Add("Vyber hrdinu");
             Task_Title.Add("Vzít/nevzít");
             Task_Title.Add("Vzít/nevzít");
@@ -128,7 +130,7 @@ namespace Draci_doupe.Classes
             //9
             Task_Title.Add("Pokračovat");
             //--------------------------------
-
+            Task_Type.Add("pokracovat");
             Task_Type.Add("vyber_hrdiny");
             Task_Type.Add("vyber");
             Task_Type.Add("vyber");
@@ -177,6 +179,7 @@ namespace Draci_doupe.Classes
 
             Task_Type.Add("konec");
             //--------------------------------
+            Task_Text.Add("Ano");
             Task_Text.Add("Šermíř,Lučištník,Léčitel");
             Task_Text.Add("Ano, Ne");
             Task_Text.Add("Ano, Ne");
@@ -226,6 +229,7 @@ namespace Draci_doupe.Classes
             Task_Text.Add("Ano");
             //--------------------------------
             Task_Reward.Add(0);
+            Task_Reward.Add(0);
             Task_Reward.Add(2);
             Task_Reward.Add(3);
             Task_Reward.Add(0);
@@ -235,7 +239,7 @@ namespace Draci_doupe.Classes
             Task_Reward.Add(0);
             Task_Reward.Add(0);
             Task_Reward.Add(0);
-            Task_Reward.Add(6);
+            Task_Reward.Add(24);
 
             Task_Reward.Add(0);
             Task_Reward.Add(0);

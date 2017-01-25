@@ -67,9 +67,11 @@ namespace Draci_doupe
             //Výběr pomocníka
             if (task.Type_task.Equals("vyber_hrdiny"))
             {
+                Continue_button.Visibility = System.Windows.Visibility.Visible;
                 Continue_button.Content = person.GetHelper(chkZone.Tag.ToString());
                 if (!person.Helper.Equals("Neni") && !person.Helper1.Equals("Neni"))
                 {
+                    HelpersInfo.DataContext = person;
                     //Zda-li je léčitel pomocníkem
                     healer = person.Healer(person.Helper, person.Helper1);
                     //Zda-li je šermíř pomocníkem
@@ -105,6 +107,7 @@ namespace Draci_doupe
                 {
                     player = new Enemy(person.Name, person.Lives, person.Attack, person.Defense);
                     enemy = new Enemy(enemynum);
+                    Enemy_Image.Source = new BitmapImage(new Uri(enemy.Image, UriKind.Relative));
                     StartBattle();
                     GameInfo();
                     AttackPopUp.IsOpen = true;
@@ -120,6 +123,7 @@ namespace Draci_doupe
             else if (task.Type_task.Equals("velitel")) {
                 player = new Enemy(person.Name, person.Lives, person.Attack, person.Defense);
                 enemy = new Enemy(enemynum);
+                Enemy_Image.Source = new BitmapImage(new Uri(enemy.Image, UriKind.Relative));
                 StartBattle();
                 AttackPopUp.IsOpen = true;
                 enemynum += 1;
@@ -251,8 +255,7 @@ namespace Draci_doupe
             LevelsProgressbar.DataContext = levels;
             ProfilePopUp.IsOpen = true;
             Name.Text = person.Name;
-            Level.Text = person.Level.ToString();
-            HelpersInfo.DataContext = person;
+            Level.Text = person.Level.ToString();           
             attack.DataContext = person.Attack;
             defense.DataContext = person.Defense;
             experienceinfo.DataContext = person.Experience;
@@ -280,6 +283,9 @@ namespace Draci_doupe
         //----- PopUp pro útok ----
         private void AttackPopUpClose_Click(object sender, RoutedEventArgs e)
         {
+            InventoryButton.Visibility = System.Windows.Visibility.Visible;
+            ProfileButton.Visibility = System.Windows.Visibility.Visible;
+            AttackPopUpClose.Visibility = System.Windows.Visibility.Hidden;
             AttackPopUp.IsOpen = false;
         }
 
@@ -324,7 +330,6 @@ namespace Draci_doupe
                         person.Lives = player.Lives;
                     }
                     AttackPopUpClose.Visibility = System.Windows.Visibility.Visible;
-                    AttackPopUpClose.Content = "Zavrit";
                 }
             }
         }
@@ -344,6 +349,8 @@ namespace Draci_doupe
             ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
             AttackPopUpClose.Visibility = System.Windows.Visibility.Hidden;
             RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
+            InventoryButton.Visibility = System.Windows.Visibility.Hidden;
+            ProfileButton.Visibility = System.Windows.Visibility.Hidden;
             Result.Text = "";
         }
 
