@@ -11,5 +11,7 @@
         <BitmapImage x:Key="Boss" UriSource="Images/Boss.png"></BitmapImage>
         <BitmapImage x:Key="Pirate" UriSource="Images/Pirate.png"></BitmapImage>
         <BitmapImage x:Key="Player" UriSource="Images/player.png"></BitmapImage>
+        <BitmapImage x:Key="Background" UriSource="Images/Background.jpg"></BitmapImage>
+        <BitmapImage x:Key="Background1" UriSource="Resources/Background1.png"></BitmapImage>
     </Application.Resources>
 </Application>

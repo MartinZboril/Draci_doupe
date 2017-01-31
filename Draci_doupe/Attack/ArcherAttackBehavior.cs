@@ -13,18 +13,21 @@ namespace Draci_doupe.Attack
         /// </summary>
         /// <param name="enemy">Nepřítel</param>
         /// <param name="attackStrenght">Síla útoku</param>
-        public void Attack(Enemy enemy, int attackStrenght)
+        /// <returns>Síla útoku</returns>
+        public double Attack(Enemy enemy, int attackStrenght)
         {
-            if (((attackStrenght * 5) - enemy.Defense) > 0)
+            double LivesMinus = 0;
+            if (((attackStrenght * 2) - enemy.Defense) > 0)
             {
-                double LivesMinus = attackStrenght * 5;
+                LivesMinus = attackStrenght * 5;
                 enemy.Lives -= LivesMinus;
             }
             else
             {
-                double LivesMinus = attackStrenght / 2;
+                LivesMinus = (attackStrenght*2) / 2;
                 enemy.Lives -= LivesMinus;
             }
+            return LivesMinus;
         }
     }
 }

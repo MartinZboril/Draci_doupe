@@ -131,7 +131,7 @@ namespace Draci_doupe.Classes
             Chapter_Title.Add("Konec");
 
             Chapter_Text.Add("Vítám tě ve hře. Včera nás přepadli zlý bojovnící, sebrali nám skoro vše. To nejdůležitější je, že vza-li kámen, který pohánní náš strom života. Je tedy na tobě, aby si ho získal zpět. Budeš muset jít, až do země, které se říká svět Chrámů.");
-            Chapter_Text.Add("Záchrana nebude vůbec jednoduchá, proto si vem sebou 2 ze 3 nabízených pomocníků. Šermíř ti přidá 50 bodů obrany, lučištník umožní útok znásobit 5, ale soupeř ten tah útočí 2x. Léčitel přidá na konci tahu 1/4 tvých životů.");
+            Chapter_Text.Add("Záchrana nebude vůbec jednoduchá, proto si vem sebou 2 ze 3 nabízených pomocníků. Šermíř ti přidá 50 bodů obrany, lučištník útok zdvojnásobí, ale soupeř ten tah útočí 2x. Léčitel přidá na konci tahu 1/4 tvých životů.");
             Chapter_Text.Add("Po výběru ti vůdce tvé vesnice nabídnul štít. Cheš ho nebo ne? Rozhodni se a můžeme pokračovat.");
             Chapter_Text.Add("Ještě než si vyšel zastavil tě tvůj kamarád a nabízí ti kamínky, za které si můžeš v budoucnu něco koupit. Vem si je budou se hodit.");
             Chapter_Text.Add("Teď, když máš základní výbavu můžeme se vydat na výpravu.");

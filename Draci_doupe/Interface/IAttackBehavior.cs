@@ -8,6 +8,6 @@ namespace Draci_doupe
 {
     public interface IAttackBehavior
     {
-        void Attack(Enemy enemy, int attackStrenght);
+        double Attack(Enemy enemy, int attackStrenght);
     }
 }

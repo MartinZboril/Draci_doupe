@@ -77,6 +77,12 @@ namespace Draci_doupe
             get { return _image; }
             set { _image = value; }
         }
+        private double _currentAttack;
+        public double CurrentAttack
+        {
+            get { return _currentAttack; }
+            set { _currentAttack = value; }
+        }
         /// <summary>
         /// Útok nepřítele, klasický
         /// </summary>
@@ -86,7 +92,7 @@ namespace Draci_doupe
         {
             int _attackStrenght = attack;
             IAttackBehavior attackBehavior = new BasicAttackBehavior();
-            attackBehavior.Attack(enemy, _attackStrenght);
+            _currentAttack = attackBehavior.Attack(enemy, _attackStrenght);
         }
         /// <summary>
         /// Útok nepřítele, lučištník
@@ -97,7 +103,7 @@ namespace Draci_doupe
         {
             int _attackStrenght = attack;
             IAttackBehavior attackBehavior = new ArcherAttackBehavior();
-            attackBehavior.Attack(enemy, _attackStrenght);
+            _currentAttack = attackBehavior.Attack(enemy, _attackStrenght);
         }
     }
 }

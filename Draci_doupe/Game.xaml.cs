@@ -61,14 +61,14 @@ namespace Draci_doupe
         //Metoda pro ověření hodnoty z checkboxu úkolu
         //Pomocí task typu se provede daná akce
         //Řeší se zde přidání věcí do inventáře, výběr hrdiny, boj,...
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Task_Click(object sender, RoutedEventArgs e)
         {
-            CheckBox chkZone = (CheckBox)sender;
+            Button Task_Button1 = (Button)sender;
             //Výběr pomocníka
             if (task.Type_task.Equals("vyber_hrdiny"))
             {
                 Continue_button.Visibility = System.Windows.Visibility.Visible;
-                Continue_button.Content = person.GetHelper(chkZone.Tag.ToString());
+                Continue_button.Content = person.GetHelper(Task_Button1.Tag.ToString());
                 if (!person.Helper.Equals("Neni") && !person.Helper1.Equals("Neni"))
                 {
                     HelpersInfo.DataContext = person;
@@ -84,7 +84,7 @@ namespace Draci_doupe
             //Vyber akci pokud se rovná ano přidá item do inventáře
             else if (task.Type_task.Equals("vyber"))
             {
-                if (chkZone.Tag.ToString().Equals("Ano"))
+                if (Task_Button1.Tag.ToString().Equals("Ano"))
                 {
                     item = new Item(task.Reward_Task);
                     //Pokud jsou kamínky(penize), musí se přidat do banky
@@ -103,7 +103,7 @@ namespace Draci_doupe
             else if (task.Type_task.Equals("boj"))
             {
                 int num = 1;                
-                if (chkZone.Tag.ToString().Equals("Ano"))
+                if (Task_Button1.Tag.ToString().Equals("Ano"))
                 {
                     player = new Enemy(person.Name, person.Lives, person.Attack, person.Defense);
                     enemy = new Enemy(enemynum);
@@ -147,7 +147,7 @@ namespace Draci_doupe
             else if (task.Type_task.Equals("hospoda"))
             {
                 int num = 1;
-                if (chkZone.Tag.ToString().Equals("Ano"))
+                if (Task_Button1.Tag.ToString().Equals("Ano"))
                 {
                     //Věci marketu
                     market = new Market(marketnum);
@@ -169,7 +169,7 @@ namespace Draci_doupe
             else if (task.Type_task.Equals("konec"))
             {
                 //Zavře herní okno
-                Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
+                Application.Current.Shutdown();
             }
             else
             {
@@ -180,10 +180,10 @@ namespace Draci_doupe
         }
 
         //Metoda pro použití předmětu
-        private void Checkbox_ItemUse_Checked(object sender, RoutedEventArgs e)
+        private void ItemUse(object sender, RoutedEventArgs e)
         {
-            CheckBox chkZone = (CheckBox)sender;
-            int num = int.Parse(chkZone.Tag.ToString());
+            Button ItemToUse = (Button)sender;
+            int num = int.Parse(ItemToUse.Tag.ToString());
             string ItemBonusType = item.GetItemBonusType(num);
             int ItemBonus = item.GetItemBonus(num);
             person.PersonItemUse(ItemBonusType, ItemBonus, LivesProgressbar.Maximum);
@@ -194,12 +194,12 @@ namespace Draci_doupe
         }
 
         //Metoda pro nákup zboží
-        private void Checkbox_Pay_Checked(object sender, RoutedEventArgs e)
+        private void ItemPay(object sender, RoutedEventArgs e)
         {
-            CheckBox chkZone = (CheckBox)sender;            
-            int Id = item.GetItemId(chkZone.Content.ToString());
-            money.Money -= item.GetItemPrice(chkZone.Content.ToString(), money.Money);
-            inventory.AddItemMarket(Id, chkZone.Content.ToString(), money.Money, item.GetItemPrice(chkZone.Content.ToString(), money.Money));
+            Button ItemToPay = (Button)sender;
+            int Id = item.GetItemId(ItemToPay.Content.ToString());
+            money.Money -= item.GetItemPrice(ItemToPay.Content.ToString(), money.Money);
+            inventory.AddItemMarket(Id, ItemToPay.Content.ToString(), money.Money, item.GetItemPrice(ItemToPay.Content.ToString(), money.Money));
             ItemSource();
         }
 
@@ -208,6 +208,9 @@ namespace Draci_doupe
         //Metoda pro útok na nepřítele, po stisknutí tlačítka
         private void AttackButton_Click(object sender, RoutedEventArgs e)
         {
+            InfoBoardBorder.Visibility = System.Windows.Visibility.Visible;
+            InfoBoard.Visibility = System.Windows.Visibility.Visible;
+            InfoBoardLabel.Visibility = System.Windows.Visibility.Visible;
             AttackButton.Content = "Útok";
             player.AttackEnemy(enemy, player.Attack);
             ArcheryButton.Visibility = person.Archer(person.Helper, person.Helper1);
@@ -215,6 +218,7 @@ namespace Draci_doupe
             Player.Text = player.Name;
             Enemy.Text = enemy.Name;
             EnemiesLivesInfo();
+            InfoBoard.Text = "Ubral jsi " + player.CurrentAttack;
         }
 
         //Metoda pro útok na nepřítele, lučištníkem, po stisknutí tlačítka
@@ -224,12 +228,13 @@ namespace Draci_doupe
             player.ArcherAttackEnemy(enemy, player.Attack);
             enemy.AttackEnemy(player, (enemy.Attack));
             EnemiesLivesInfo();
+            InfoBoard.Text = "Lučištník ubral " + player.CurrentAttack;
         }
 
         //Metoda pro útok na nepřítele, speciální útok, symbolizuje hrací kostku
         private void RandomAttackButton_Click(object sender, RoutedEventArgs e)
         {
-            dice.DiceAttackEnemy(enemy, player.Attack);
+            InfoBoard.Text = "Kritický zasáh " + dice.DiceAttackEnemy(enemy, player.Attack);
             EnemiesLivesInfo();
         }
 
@@ -360,6 +365,9 @@ namespace Draci_doupe
             AttackButton.Visibility = System.Windows.Visibility.Hidden;
             ArcheryButton.Visibility = System.Windows.Visibility.Hidden;
             RandomAttackButton.Visibility = System.Windows.Visibility.Hidden;
+            InfoBoardBorder.Visibility = System.Windows.Visibility.Hidden;
+            InfoBoard.Visibility = System.Windows.Visibility.Hidden;
+            InfoBoardLabel.Visibility = System.Windows.Visibility.Hidden;
         }
 
         //Metoda pro zobrazení životů, při boji
@@ -406,7 +414,7 @@ namespace Draci_doupe
         private void GameEndButton_Click(object sender, RoutedEventArgs e)
         {
             AttackPopUp.IsOpen = false;
-            Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
+            Application.Current.Shutdown();
         }
     }
 }

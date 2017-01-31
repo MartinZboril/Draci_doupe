@@ -14,16 +14,19 @@ namespace Draci_doupe.Classes
         /// Útok nepřítele, tzv. náhodný
         /// </summary>
         /// <param name="enemy">Nepřítel na kterého se útočí</param>
-        /// <param name="attack">Síla útoku</param>
-        public void DiceAttackEnemy(Enemy enemy, int attack)
+        /// <param name="attack">Síla útoku</param
+        /// <returns>Síla útoku</returns>
+        public double DiceAttackEnemy(Enemy enemy, int attack)
         {
+            double num = 0;
             bool start = GetRandomNumber();
             if (start)
             {          
             int _attackStrenght = attack;
             IAttackBehavior attackBehavior = new DiceAttackBehavior();
-            attackBehavior.Attack(enemy, _attackStrenght);
+            num = attackBehavior.Attack(enemy, _attackStrenght);
             }
+            return num;
         }
         
         /// <summary>

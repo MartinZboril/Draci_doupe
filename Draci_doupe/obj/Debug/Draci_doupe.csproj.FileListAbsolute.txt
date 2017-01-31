@@ -81,3 +81,37 @@ C:\Users\Martin\Downloads\Draci_Doupě\Draci_doupe\obj\Debug\Draci_doupe.csproj.
 C:\Users\Martin\Downloads\Draci_Doupě\Draci_doupe\obj\Debug\Draci_doupe.exe
 C:\Users\Martin\Downloads\Draci_Doupě\Draci_doupe\obj\Debug\Draci_doupe.pdb
 C:\Users\Martin\Downloads\Draci_Doupě\Draci_doupe\obj\Debug\Draci_doupe.csprojResolveAssemblyReference.cache
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.exe.config
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.exe
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.pdb
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.exe
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.pdb
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.csprojResolveAssemblyReference.cache
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Game.g.cs
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\MainWindow.g.cs
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\App.g.cs
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe_MarkupCompile.cache
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe_MarkupCompile.lref
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\App.baml
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Game.baml
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\MainWindow.baml
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.g.resources
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.Properties.Resources.resources
+D:\zborima14\Nová složka\Draci_doupe-master (1)\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.csproj.GenerateResource.Cache
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.exe.config
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.exe
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\bin\Debug\Draci_doupe.pdb
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Game.g.cs
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\MainWindow.g.cs
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\App.g.cs
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe_MarkupCompile.cache
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe_MarkupCompile.lref
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\App.baml
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Game.baml
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\MainWindow.baml
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.g.resources
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.Properties.Resources.resources
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.csproj.GenerateResource.Cache
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.exe
+C:\Users\Martin\Desktop\Draci_doupe-master\Draci_doupe\obj\Debug\Draci_doupe.pdb
